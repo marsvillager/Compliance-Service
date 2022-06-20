@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan({"com.siemens.osa.data.cs", "com.siemens.osa.module.cs"})
 @EnableJpaRepositories(basePackageClasses = ConfigInfoRepository.class)
 @EntityScan("com.siemens.osa.data.cs.entity")
-public class ModuleApplicationTests {
+public class ModuleApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ModuleApplicationTests.class, args);
+        SpringApplication.run(ModuleApplication.class, args);
     }
 }
