@@ -9,5 +9,8 @@ Compliance Service
 ## import database
 ```psql -U postgres CS < <路径>/cs.sql```
 
+<img src="https://user-images.githubusercontent.com/106481991/177508344-5e25381c-bb84-47fa-a29f-79b38e75aa66.png" width="700px" />
+
+
 ## connect to database
 <img src="https://user-images.githubusercontent.com/106481991/173718329-21861102-a84b-4109-a4dd-6b015baa1b6b.png" width="700px" />
