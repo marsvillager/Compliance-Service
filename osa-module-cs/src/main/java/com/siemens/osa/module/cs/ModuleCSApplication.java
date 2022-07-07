@@ -1,6 +1,6 @@
 package com.siemens.osa.module.cs;
 
-import com.siemens.osa.data.cs.repository.ConfigInfoRepository;
+import com.siemens.osa.data.cs.mapper.ConfigInfoMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan({"com.siemens.osa.data.cs", "com.siemens.osa.module.cs"})
-@EnableJpaRepositories(basePackageClasses = ConfigInfoRepository.class)
+@EnableJpaRepositories(basePackageClasses = ConfigInfoMapper.class)
 @EntityScan("com.siemens.osa.data.cs.entity")
-public class ModuleApplication {
+public class ModuleCSApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ModuleApplication.class, args);
+        SpringApplication.run(ModuleCSApplication.class, args);
     }
 }
