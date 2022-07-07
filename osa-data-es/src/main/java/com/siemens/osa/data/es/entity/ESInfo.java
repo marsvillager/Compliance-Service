@@ -1,10 +1,7 @@
 package com.siemens.osa.data.es.entity;
 
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
-@Component
 public class ESInfo {
 
     private String ID;

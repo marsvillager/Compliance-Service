@@ -11,6 +11,9 @@ import java.util.List;
 public class GetConfigServiceImpl implements IGetConfigService {
     private ConfigInfoMapper configInfoMapper;
 
+    public GetConfigServiceImpl() {
+    }
+
     public GetConfigServiceImpl(ConfigInfoMapper configInfoMapper) {
         this.configInfoMapper = configInfoMapper;
     }

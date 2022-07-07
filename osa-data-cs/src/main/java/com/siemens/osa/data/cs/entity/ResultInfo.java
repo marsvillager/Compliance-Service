@@ -13,6 +13,9 @@ public class ResultInfo {
     private String actual;
     private String status;
 
+    public ResultInfo() {
+    }
+
     public ResultInfo(Timestamp timestamp, Integer id, String os, String ruleId, String serverIp, String hostIp, String expected, String actual, String status) {
         this.timestamp = timestamp;
         this.id = id;

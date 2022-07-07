@@ -9,14 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class ResultTest {
-
+public class ResultTest {
     @Autowired
     ResultInfoMapper resultInfoMapper;
-
-    @Test
-    void contextLoads() {
-    }
 
     @Test
     public void testGetAllConfig(){

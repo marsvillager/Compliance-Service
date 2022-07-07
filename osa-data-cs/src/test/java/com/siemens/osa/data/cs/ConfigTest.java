@@ -9,14 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class ConfigTest {
-
+public class ConfigTest {
     @Autowired
     ConfigInfoMapper configInfoMapper;
-
-    @Test
-    void contextLoads() {
-    }
 
     @Test
     public void testGetAllConfig(){

@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @SpringBootTest
-class DataESApplicationTests {
-
+public class DataESApplicationTests {
     @Autowired
     RestHighLevelClient client;
 
@@ -21,17 +20,11 @@ class DataESApplicationTests {
     String index;
 
     @Test
-    void contextLoads() {
-    }
-
-    @Test
-    public void testGetEs() throws IOException {
+    public void testGetES() throws IOException {
         ESInfoGetServiceImpl esInfoGetService = new ESInfoGetServiceImpl(client, index);
-        List<ESInfo> allConfig = esInfoGetService.getAllConfig();
-        for (ESInfo esInfo : allConfig) {
+        List<ESInfo> esInfoList = esInfoGetService.getAllConfig();
+        for (ESInfo esInfo : esInfoList) {
             System.out.println(esInfo);
         }
     }
-
-
 }
