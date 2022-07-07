@@ -14,7 +14,7 @@ public class ResultTest {
     ResultInfoMapper resultInfoMapper;
 
     @Test
-    public void testGetAllConfig(){
+    public void testGetAllResult(){
         List<ResultInfo> allResult = resultInfoMapper.getAllResult();
         for (ResultInfo resultInfo : allResult) {
             System.out.println(resultInfo);

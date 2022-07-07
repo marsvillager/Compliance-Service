@@ -1,6 +1,6 @@
 package com.siemens.osa.data.es;
 
-import com.siemens.osa.data.es.Service.GetData.impl.ESInfoGetServiceImpl;
+import com.siemens.osa.data.es.Service.GetData.impl.GetESInfoServiceImpl;
 import com.siemens.osa.data.es.entity.ESInfo;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class DataESApplicationTests {
 
     @Test
     public void testGetES() throws IOException {
-        ESInfoGetServiceImpl esInfoGetService = new ESInfoGetServiceImpl(client, index);
+        GetESInfoServiceImpl esInfoGetService = new GetESInfoServiceImpl(client, index);
         List<ESInfo> esInfoList = esInfoGetService.getAllConfig();
         for (ESInfo esInfo : esInfoList) {
             System.out.println(esInfo);

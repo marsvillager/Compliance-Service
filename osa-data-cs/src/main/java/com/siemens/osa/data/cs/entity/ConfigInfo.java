@@ -1,7 +1,10 @@
 package com.siemens.osa.data.cs.entity;
 
+import lombok.Data;
+
 import java.sql.Timestamp;
 
+@Data
 public class ConfigInfo {
     private Timestamp timestamp;
     private Integer id;

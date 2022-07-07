@@ -15,7 +15,7 @@ public class GetResultTest {
     ResultInfoMapper resultInfoMapper;
 
     @Test
-    public void show() {
+    public void testGetAllResult() {
         GetResultServiceImpl getResultService = new GetResultServiceImpl(resultInfoMapper);
         List<ResultInfo> resultInfoList = getResultService.getResult();
         for (ResultInfo resultInfo: resultInfoList) {

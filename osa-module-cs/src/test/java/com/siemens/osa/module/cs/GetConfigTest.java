@@ -12,10 +12,10 @@ import java.util.List;
 @SpringBootTest
 public class GetConfigTest {
     @Autowired
-    private ConfigInfoMapper configInfoMapper;
+    ConfigInfoMapper configInfoMapper;
 
     @Test
-    public void show() {
+    public void testGetAllConfig() {
         GetConfigServiceImpl getCSService = new GetConfigServiceImpl(configInfoMapper);
         List<ConfigInfo> configInfoList = getCSService.getConfig();
         for (ConfigInfo configInfo: configInfoList) {
