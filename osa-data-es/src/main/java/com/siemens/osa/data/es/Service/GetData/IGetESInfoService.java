@@ -7,6 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 @Repository
-public interface IESInfoGetService {
+public interface IGetESInfoService {
     List<ESInfo> getAllConfig() throws IOException;
 }

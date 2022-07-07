@@ -1,6 +1,6 @@
 package com.siemens.osa.data.es.Service.GetData.impl;
 
-import com.siemens.osa.data.es.Service.GetData.IESInfoGetService;
+import com.siemens.osa.data.es.Service.GetData.IGetESInfoService;
 import com.siemens.osa.data.es.entity.ESInfo;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -18,16 +18,16 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ESInfoGetServiceImpl implements IESInfoGetService {
+public class GetESInfoServiceImpl implements IGetESInfoService {
 
     private RestHighLevelClient client;
 
     private String index;
 
-    public ESInfoGetServiceImpl() {
+    public GetESInfoServiceImpl() {
     }
 
-    public ESInfoGetServiceImpl(RestHighLevelClient client, String index) {
+    public GetESInfoServiceImpl(RestHighLevelClient client, String index) {
         this.client = client;
         this.index = index;
     }

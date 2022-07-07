@@ -46,6 +46,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.siemens</groupId>
+            <artifactId>osa-data-es</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
