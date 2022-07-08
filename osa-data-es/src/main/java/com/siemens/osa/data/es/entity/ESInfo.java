@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ESInfo {
 
-    private String ID;
+    private Integer ID;
 
     private String collectTime;
 
@@ -17,7 +17,7 @@ public class ESInfo {
     public ESInfo() {
     }
 
-    public ESInfo(String ID, String collectTime, List<String> result, String hostIp, String ruleID) {
+    public ESInfo(Integer ID, String collectTime, List<String> result, String hostIp, String ruleID) {
         this.ID = ID;
         this.collectTime = collectTime;
         this.result = result;
@@ -25,11 +25,11 @@ public class ESInfo {
         this.ruleID = ruleID;
     }
 
-    public String getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
