@@ -31,10 +31,17 @@
 
     <!--    void addResult(@Param("timestamp") Timestamp timestamp, @Param("id") Integer id, @Param("os") String os,-->
     <!--    @Param("server_ip") String server_ip, @Param("host_ip") String host_ip, @Param("rule_id") String rule_id,-->
-    <!--    @Param("expected") String expected, @Param("actual") String actual, @Param("status") String status);-->
-<!--    <insert id="addResult" parameterType="ResultInfo">-->
-<!--        insert into result(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status)-->
-<!--        values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id}, #{expected}::text[], #{actual}::text[], #{status})-->
+    <!--    @Param("expected") List<String> expected, @Param("actual") List<String> actual, @Param("status") String status);-->
+    <!--    expected 和 actual 在 PostgreSQL中为 text[]，需要加上大括号，实质是转化成了 String 传参-->
+    <insert id="addResult" parameterType="ResultInfo">
+        insert into result(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status)
+        values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id},
+        <foreach collection="expected" item="expectedItem" index="index" open="'{" separator="," close="}'"> ${expectedItem} </foreach>,
+        <foreach collection="actual" item="actualItem" index="index" open="'{" separator="," close="}'"> ${actualItem} </foreach>, #{status})
+    </insert>
+<!--    <insert id="addResult" parameterType="Result">-->
+<!--            insert into result(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status)-->
+<!--            values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id}, #{expected}::text[], #{actual}::text[], #{status})-->
 <!--    </insert>-->
 
 <!--    void updateResult(@Param("id") Integer id, @Param("ruleId") String ruleId, @Param("actual") String[] actual, @Param("status") String status);-->

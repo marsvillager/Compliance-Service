@@ -18,7 +18,7 @@ public interface ResultInfoMapper {
     @MapKey("rule_id")
     Map<String, ResultInfo> getResultById(@Param("id") Integer id);
 
-//    void addResult(@Param("timestamp") Timestamp timestamp, @Param("id") Integer id, @Param("os") String os,
-//                   @Param("server_ip") String server_ip, @Param("host_ip") String host_ip, @Param("rule_id") String rule_id,
-//                   @Param("expected") String expected, @Param("actual") String actual, @Param("status") String status);
+    void addResult(@Param("timestamp") Timestamp timestamp, @Param("id") Integer id, @Param("os") String os,
+                   @Param("server_ip") String server_ip, @Param("host_ip") String host_ip, @Param("rule_id") String rule_id,
+                   @Param("expected") List<String> expected, @Param("actual") List<String> actual, @Param("status") String status);
 }
