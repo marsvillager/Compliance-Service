@@ -31,14 +31,4 @@ public class GetResultTest {
         Map<String, ResultInfo> resultInfoMap = getResultService.getResultById(id);
         System.out.println(resultInfoMap.get("BL696_0461"));
     }
-
-    @Test
-    public void testGetResultListById(){
-        int id = 2;
-        GetResultServiceImpl getResultService = new GetResultServiceImpl(resultInfoMapper);
-        List<String> result = getResultService.getResultListById(id, "BL696_0461");
-        for (String res: result) {
-            System.out.println(res);
-        }
-    }
 }

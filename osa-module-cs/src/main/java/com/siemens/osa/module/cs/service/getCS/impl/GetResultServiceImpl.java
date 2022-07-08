@@ -28,9 +28,4 @@ public class GetResultServiceImpl implements IGetResultService {
     public Map<String, ResultInfo> getResultById(Integer id) {
         return resultInfoMapper.getResultById(id);
     }
-
-    @Override
-    public List<String> getResultListById(Integer id, String ruleId) {
-        return resultInfoMapper.getResultListById(id, ruleId);
-    }
 }

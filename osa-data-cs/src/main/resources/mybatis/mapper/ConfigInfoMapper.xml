@@ -12,4 +12,9 @@
     <select id="getConfigById" resultType="ConfigInfo">
         select * from config where id = #{id}
     </select>
+
+    <!--    List<String> getConfigListById(@Param("id") Integer id, @Param("ruleId") String ruleId);-->
+    <select id="getConfigListById" resultType="String">
+        select data from config where id = #{id} and rule_id = #{ruleId}
+    </select>
 </mapper>

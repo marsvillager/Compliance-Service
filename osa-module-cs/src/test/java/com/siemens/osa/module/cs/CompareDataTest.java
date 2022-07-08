@@ -1,6 +1,6 @@
 package com.siemens.osa.module.cs;
 
-import com.siemens.osa.data.cs.mapper.ResultInfoMapper;
+import com.siemens.osa.data.cs.mapper.ConfigInfoMapper;
 import com.siemens.osa.data.es.Service.GetData.impl.GetESInfoServiceImpl;
 import com.siemens.osa.module.cs.service.compareData.impl.CompareDataServiceServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -15,11 +15,11 @@ public class CompareDataTest {
     GetESInfoServiceImpl esInfoGetService;
 
     @Autowired
-    ResultInfoMapper resultInfoMapper;
+    ConfigInfoMapper configInfoMapper;
 
     @Test
     public void testCompareData() {
-        CompareDataServiceServiceImpl compareDataService = new CompareDataServiceServiceImpl(resultInfoMapper, esInfoGetService);
+        CompareDataServiceServiceImpl compareDataService = new CompareDataServiceServiceImpl(configInfoMapper, esInfoGetService);
         compareDataService.compareData();
     }
 }

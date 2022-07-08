@@ -11,4 +11,6 @@ public interface IGetConfigService {
     List<ConfigInfo> getConfig();
 
     Map<String, ConfigInfo> getConfigById(Integer id);
+
+    List<String> getConfigListById(Integer id, String ruleId);
 }

@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-import java.util.Map;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.sql.Timestamp;
+import java.util.*;
 
 @SpringBootTest
 public class ResultTest {
@@ -29,21 +31,24 @@ public class ResultTest {
         System.out.println(resultInfoMap.get("BL696_0461"));
     }
 
-    @Test
-    public void testGetResultListById(){
-        int id = 2;
-        List<String> result = resultInfoMapper.getResultListById(id, "BL696_0461");
-        for (String res: result) {
-            System.out.println(res);
-        }
-    }
+//    @Test
+//    public void testUpdateResult() {
+//        int id = 2;
+//        String[] actual = new String[]{"0"};
+//        testGetResultById();
+//        resultInfoMapper.updateResult(id, "BL696_0461", actual, "failed");
+//        testGetResultById();
+//    }
+
 
     @Test
-    public void testUpdateResult() {
-        int id = 2;
-        String[] actual = new String[]{"0"};
-        testGetResultById();
-        resultInfoMapper.updateResult(id, "BL696_0461", actual, "failed");
-        testGetResultById();
+    public void testAddResult() {
+        // expected 和 actual 转化为 String 后由于数据库中为 text[]，所以需要加上大括号
+        try {
+            resultInfoMapper.addResult(new Timestamp(System.currentTimeMillis()), 2, "win", InetAddress.getLocalHost().getHostAddress(),
+                    "192.168.1.155", "BL696_0461", "{" + "0,1" + "}", "{" + "0,2" + "}", "failed");
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 }
