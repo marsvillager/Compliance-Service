@@ -9,5 +9,6 @@ import java.util.Map;
 @Repository
 public interface IGetConfigService {
     List<ConfigInfo> getConfig();
+
     Map<String, ConfigInfo> getConfigById(Integer id);
 }
