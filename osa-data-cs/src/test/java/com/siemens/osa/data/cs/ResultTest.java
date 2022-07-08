@@ -31,16 +31,6 @@ public class ResultTest {
         System.out.println(resultInfoMap.get("BL696_0461"));
     }
 
-//    @Test
-//    public void testUpdateResult() {
-//        int id = 2;
-//        String[] actual = new String[]{"0"};
-//        testGetResultById();
-//        resultInfoMapper.updateResult(id, "BL696_0461", actual, "failed");
-//        testGetResultById();
-//    }
-
-
     @Test
     public void testAddResult() {
         // expected 和 actual 转化为 String 后由于数据库中为 text[]，所以需要加上大括号
