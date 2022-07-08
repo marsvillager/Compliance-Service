@@ -31,14 +31,14 @@ public class ResultTest {
         System.out.println(resultInfoMap.get("BL696_0461"));
     }
 
-    @Test
-    public void testAddResult() {
-        // expected 和 actual 转化为 String 后由于数据库中为 text[]，所以需要加上大括号
-        try {
-            resultInfoMapper.addResult(new Timestamp(System.currentTimeMillis()), 2, "win", InetAddress.getLocalHost().getHostAddress(),
-                    "192.168.1.155", "BL696_0461", "{" + "0,1" + "}", "{" + "0,2" + "}", "failed");
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void testAddResult() {
+//        // expected 和 actual 转化为 String 后由于数据库中为 text[]，所以需要加上大括号
+//        try {
+//            resultInfoMapper.addResult(new Timestamp(System.currentTimeMillis()), 2, "win", InetAddress.getLocalHost().getHostAddress(),
+//                    "192.168.1.155", "BL696_0461", "{" + "0,1" + "}", "{" + "0,2" + "}", "failed");
+//        } catch (UnknownHostException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

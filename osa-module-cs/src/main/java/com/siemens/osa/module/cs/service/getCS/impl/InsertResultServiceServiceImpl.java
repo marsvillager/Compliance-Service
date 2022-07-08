@@ -15,8 +15,8 @@ public class InsertResultServiceServiceImpl implements IInsertResultService {
         this.resultInfoMapper = resultInfoMapper;
     }
 
-    @Override
-    public void insertResult(Timestamp timestamp, Integer id, String os, String server_ip, String host_ip, String rule_id, String expected, String actual, String status) {
-        resultInfoMapper.addResult(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status);
-    }
+//    @Override
+//    public void insertResult(Timestamp timestamp, Integer id, String os, String server_ip, String host_ip, String rule_id, String expected, String actual, String status) {
+//        resultInfoMapper.addResult(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status);
+//    }
 }

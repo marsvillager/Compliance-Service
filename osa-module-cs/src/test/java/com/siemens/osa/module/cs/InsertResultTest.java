@@ -20,11 +20,11 @@ public class InsertResultTest {
         InsertResultServiceServiceImpl updateResultService = new InsertResultServiceServiceImpl(resultInfoMapper);
 
         // expected 和 actual 转化为 String 后由于数据库中为 text[]，所以需要加上大括号
-        try {
-            updateResultService.insertResult(new Timestamp(System.currentTimeMillis()), 2, "win", InetAddress.getLocalHost().getHostAddress(),
-                    "192.168.1.155", "BL696_0461", "{" + "0,1" + "}", "{" + "0,2" + "}", "failed");
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            updateResultService.insertResult(new Timestamp(System.currentTimeMillis()), 2, "win", InetAddress.getLocalHost().getHostAddress(),
+//                    "192.168.1.155", "BL696_0461", "{" + "0,1" + "}", "{" + "0,2" + "}", "failed");
+//        } catch (UnknownHostException e) {
+//            e.printStackTrace();
+//        }
     }
 }

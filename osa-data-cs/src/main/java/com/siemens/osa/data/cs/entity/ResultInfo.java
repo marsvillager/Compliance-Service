@@ -3,6 +3,7 @@ package com.siemens.osa.data.cs.entity;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 public class ResultInfo {
@@ -12,14 +13,14 @@ public class ResultInfo {
     private String rule_id;
     private String server_ip;
     private String host_ip;
-    private String expected;
-    private String actual;
+    private List<String> expected;
+    private List<String> actual;
     private String status;
 
     public ResultInfo() {
     }
 
-    public ResultInfo(Timestamp timestamp, Integer id, String os, String ruleId, String serverIp, String hostIp, String expected, String actual, String status) {
+    public ResultInfo(Timestamp timestamp, Integer id, String os, String ruleId, String serverIp, String hostIp, List<String> expected, List<String> actual, String status) {
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
@@ -79,19 +80,19 @@ public class ResultInfo {
         this.host_ip = hostIp;
     }
 
-    public String getExpected() {
+    public List<String> getExpected() {
         return expected;
     }
 
-    public void setExpected(String expected) {
+    public void setExpected(List<String> expected) {
         this.expected = expected;
     }
 
-    public String getActual() {
+    public List<String> getActual() {
         return actual;
     }
 
-    public void setActual(String actual) {
+    public void setActual(List<String> actual) {
         this.actual = actual;
     }
 
