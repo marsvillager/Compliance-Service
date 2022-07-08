@@ -38,6 +38,56 @@ CREATE TABLE public.config (
 ALTER TABLE public.config OWNER TO postgres;
 
 --
+-- Name: COLUMN config."timestamp"; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.config."timestamp" IS '时间戳，标记存储的时间（主键）';
+
+
+--
+-- Name: COLUMN config.id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.config.id IS '配置文件 ID，方便读取（主键）';
+
+
+--
+-- Name: COLUMN config.os; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.config.os IS '标记分发的系统
+';
+
+
+--
+-- Name: COLUMN config.rule_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.config.rule_id IS '检查项 ID';
+
+
+--
+-- Name: COLUMN config.data; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.config.data IS '检查预期值';
+
+
+--
+-- Name: COLUMN config.type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.config.type IS '比对类型（0直接比对，1需要进行文本处理）';
+
+
+--
+-- Name: COLUMN config.param; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.config.param IS '字符数组类型，存储多个命令行或 path';
+
+
+--
 -- Name: result; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -55,6 +105,69 @@ CREATE TABLE public.result (
 
 
 ALTER TABLE public.result OWNER TO postgres;
+
+--
+-- Name: COLUMN result."timestamp"; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result."timestamp" IS '时间戳，标记存储的时间';
+
+
+--
+-- Name: COLUMN result.id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result.id IS '配置文件 ID，方便读取';
+
+
+--
+-- Name: COLUMN result.os; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result.os IS '标记系统类型';
+
+
+--
+-- Name: COLUMN result.server_ip; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result.server_ip IS '标记负责比对的主机';
+
+
+--
+-- Name: COLUMN result.host_ip; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result.host_ip IS '标记被比对的主机';
+
+
+--
+-- Name: COLUMN result.rule_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result.rule_id IS '标记是哪个检查项';
+
+
+--
+-- Name: COLUMN result.expected; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result.expected IS '查询结果的预期值';
+
+
+--
+-- Name: COLUMN result.actual; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result.actual IS '查询结果的实际值';
+
+
+--
+-- Name: COLUMN result.status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.result.status IS '比对的结果（pass/failed）';
+
 
 --
 -- Data for Name: config; Type: TABLE DATA; Schema: public; Owner: postgres

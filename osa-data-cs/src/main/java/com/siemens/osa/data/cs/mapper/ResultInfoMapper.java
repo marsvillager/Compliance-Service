@@ -16,4 +16,6 @@ public interface ResultInfoMapper {
 
     @MapKey("rule_id")
     Map<String, ResultInfo> getResultById(@Param("id") Integer id);
+
+    void updateResult(@Param("id") Integer id, @Param("ruleId") String ruleId, @Param("actual") String[] actual, @Param("status") String status);
 }

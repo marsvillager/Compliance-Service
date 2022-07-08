@@ -28,4 +28,13 @@ public class ResultTest {
         Map<String, ResultInfo> resultInfoMap = resultInfoMapper.getResultById(id);
         System.out.println(resultInfoMap.get("BL696_0461"));
     }
+
+    @Test
+    public void testUpdateResult() {
+        int id = 2;
+        String[] actual = new String[]{"0"};
+        testGetResultById();
+        resultInfoMapper.updateResult(id, "BL696_0461", actual, "failed");
+        testGetResultById();
+    }
 }
