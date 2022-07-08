@@ -28,4 +28,9 @@ public class GetConfigServiceImpl implements IGetConfigService {
     public Map<String, ConfigInfo> getConfigById(Integer id) {
         return configInfoMapper.getConfigById(id);
     }
+
+    @Override
+    public List<String> getConfigListById(Integer id, String ruleId) {
+        return configInfoMapper.getConfigListById(id, ruleId);
+    }
 }

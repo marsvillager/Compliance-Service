@@ -28,4 +28,13 @@ public class ConfigTest {
         Map<String, ConfigInfo> configInfoMap = configInfoMapper.getConfigById(id);
         System.out.println(configInfoMap.get("BL696_0461"));
     }
+
+    @Test
+    public void testGetConfigListById(){
+        int id = 2;
+        List<String> result = configInfoMapper.getConfigListById(id, "BL696_0461");
+        for (String res: result) {
+            System.out.println(res);
+        }
+    }
 }

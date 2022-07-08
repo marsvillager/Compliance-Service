@@ -31,4 +31,14 @@ public class GetConfigTest {
         Map<String, ConfigInfo> configById = getConfigService.getConfigById(id);
         System.out.println(configById.get("BL696_0461"));
     }
+
+    @Test
+    public void testGetConfigListById(){
+        int id = 2;
+        GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configInfoMapper);
+        List<String> result = getConfigService.getConfigListById(id, "BL696_0461");
+        for (String res: result) {
+            System.out.println(res);
+        }
+    }
 }
