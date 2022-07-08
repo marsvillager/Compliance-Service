@@ -9,7 +9,6 @@
         <result property="os" column="os"></result>
         <result property="rule_id" column="rule_id"></result>
         <result property="type" column="type"></result>
-<!--        <result property="param" column="param"></result>-->
         <collection property="data" ofType="String">
             <id property="data" column="data"></id>
         </collection>
