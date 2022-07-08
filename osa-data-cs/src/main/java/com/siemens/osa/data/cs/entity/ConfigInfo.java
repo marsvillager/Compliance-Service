@@ -3,6 +3,7 @@ package com.siemens.osa.data.cs.entity;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 public class ConfigInfo {
@@ -10,14 +11,14 @@ public class ConfigInfo {
     private Integer id;
     private String os;
     private String rule_id;
-    private String data;
+    private List<String> data;
     private Integer type;
-    private String param;
+    private List<String> param;
 
     public ConfigInfo() {
     }
 
-    public ConfigInfo(Timestamp timestamp, Integer id, String os, String ruleId, String data, Integer type, String param) {
+    public ConfigInfo(Timestamp timestamp, Integer id, String os, String ruleId, List<String> data, Integer type, List<String> param) {
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
@@ -59,11 +60,11 @@ public class ConfigInfo {
         this.rule_id = ruleId;
     }
 
-    public String getData() {
+    public List<String> getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(List<String> data) {
         this.data = data;
     }
 
@@ -75,11 +76,11 @@ public class ConfigInfo {
         this.type = type;
     }
 
-    public String getParam() {
+    public List<String> getParam() {
         return param;
     }
 
-    public void setParam(String param) {
+    public void setParam(List<String> param) {
         this.param = param;
     }
 
