@@ -14,6 +14,6 @@ import java.util.Map;
 public interface ConfigInfoMapper {
     List<ConfigInfo> getAllConfig();
 
-    @MapKey("ruleId")
+    @MapKey("rule_id")
     Map<String, ConfigInfo> getConfigById(@Param("id") Integer id);
 }
