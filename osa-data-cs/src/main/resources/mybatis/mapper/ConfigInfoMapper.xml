@@ -5,7 +5,7 @@
 <mapper namespace="com.siemens.osa.data.cs.mapper.ConfigInfoMapper">
     <resultMap id="configList" type="ConfigInfo">
         <id property="timestamp" column="timestamp"></id>
-        <result property="id" column="id"></result>
+        <id property="id" column="id"></id>
         <result property="os" column="os"></result>
         <result property="rule_id" column="rule_id"></result>
         <result property="type" column="type"></result>
