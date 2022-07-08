@@ -17,6 +17,5 @@ public interface ConfigInfoMapper {
     @MapKey("rule_id")
     Map<String, ConfigInfo> getConfigById(@Param("id") Integer id);
 
-    @MapKey("rule_id")
     List<String> getConfigListById(@Param("id") Integer id, @Param("ruleId") String ruleId);
 }
