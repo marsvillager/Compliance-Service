@@ -45,7 +45,7 @@ CREATE TABLE public.result (
     "timestamp" timestamp with time zone NOT NULL,
     id integer NOT NULL,
     os text,
-    sever_ip inet,
+    server_ip inet,
     host_ip inet,
     rule_id text,
     expected text[],
@@ -74,7 +74,7 @@ COPY public.config ("timestamp", id, os, rule_id, data, type, param) FROM stdin;
 -- Data for Name: result; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.result ("timestamp", id, os, sever_ip, host_ip, rule_id, expected, actual, status) FROM stdin;
+COPY public.result ("timestamp", id, os, server_ip, host_ip, rule_id, expected, actual, status) FROM stdin;
 2022-07-05 17:40:27.19112+08	2	windows10	192.168.1.155	192.168.1.150	BL696_0461	{1}	{1}	pass
 \.
 

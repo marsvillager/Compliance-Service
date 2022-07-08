@@ -6,6 +6,7 @@ import com.siemens.osa.module.cs.service.getCS.IGetResultService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class GetResultServiceImpl implements IGetResultService {
@@ -21,5 +22,10 @@ public class GetResultServiceImpl implements IGetResultService {
     @Override
     public List<ResultInfo> getResult() {
         return resultInfoMapper.getAllResult();
+    }
+
+    @Override
+    public Map<String, ResultInfo> getResultById(Integer id) {
+        return resultInfoMapper.getResultById(id);
     }
 }

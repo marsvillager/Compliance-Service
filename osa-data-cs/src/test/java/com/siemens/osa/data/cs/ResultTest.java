@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 public class ResultTest {
@@ -19,5 +20,12 @@ public class ResultTest {
         for (ResultInfo resultInfo : allResult) {
             System.out.println(resultInfo);
         }
+    }
+
+    @Test
+    public void testGetResultById(){
+        int id = 2;
+        Map<String, ResultInfo> resultInfoMap = resultInfoMapper.getResultById(id);
+        System.out.println(resultInfoMap.get("BL696_0461"));
     }
 }
