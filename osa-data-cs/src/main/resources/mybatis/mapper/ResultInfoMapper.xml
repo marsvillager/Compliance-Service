@@ -13,6 +13,11 @@
         select * from result where id = #{id}
     </select>
 
+    <!--    List<String> getResultListById(@Param("id") Integer id, @Param("ruleId") String ruleId);-->
+    <select id="getResultListById" resultType="String">
+        select expected from result where id = #{id} and rule_id = #{ruleId}
+    </select>
+
     <!--    void updateResult(@Param("id") Integer id, @Param("ruleId") String ruleId, @Param("actual") String[] actual, @Param("status") String status);-->
     <update id="updateResult">
         update result set actual = #{actual}, status = #{status} where id = #{id} and rule_id = #{ruleId}

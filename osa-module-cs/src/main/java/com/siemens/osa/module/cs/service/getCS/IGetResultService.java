@@ -11,4 +11,6 @@ public interface IGetResultService {
     List<ResultInfo> getResult();
 
     Map<String, ResultInfo> getResultById(Integer id);
+
+    List<String> getResultListById(Integer id, String ruleId);
 }

@@ -30,6 +30,15 @@ public class ResultTest {
     }
 
     @Test
+    public void testGetResultListById(){
+        int id = 2;
+        List<String> result = resultInfoMapper.getResultListById(id, "BL696_0461");
+        for (String res: result) {
+            System.out.println(res);
+        }
+    }
+
+    @Test
     public void testUpdateResult() {
         int id = 2;
         String[] actual = new String[]{"0"};
