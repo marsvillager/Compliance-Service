@@ -1,7 +1,7 @@
 package com.siemens.osa.module.cs;
 
 import com.siemens.osa.data.cs.mapper.ResultInfoMapper;
-import com.siemens.osa.module.cs.service.getCS.impl.UpdateResultServiceImpl;
+import com.siemens.osa.module.cs.service.getCS.impl.UpdateResultServiceServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,7 @@ public class UpdateResultTest {
 
     @Test
     public void testUpdateResult() {
-        UpdateResultServiceImpl updateResultService = new UpdateResultServiceImpl(resultInfoMapper);
+        UpdateResultServiceServiceImpl updateResultService = new UpdateResultServiceServiceImpl(resultInfoMapper);
 
         int id = 2;
         String[] actual = new String[]{"1"};

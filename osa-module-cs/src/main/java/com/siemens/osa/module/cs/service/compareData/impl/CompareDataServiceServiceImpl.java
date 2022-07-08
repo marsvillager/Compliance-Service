@@ -3,22 +3,20 @@ package com.siemens.osa.module.cs.service.compareData.impl;
 import com.siemens.osa.data.cs.mapper.ResultInfoMapper;
 import com.siemens.osa.data.es.Service.GetData.impl.GetESInfoServiceImpl;
 import com.siemens.osa.data.es.entity.ESInfo;
-import com.siemens.osa.module.cs.service.compareData.ICompareData;
+import com.siemens.osa.module.cs.service.compareData.ICompareDataService;
 import com.siemens.osa.module.cs.service.getCS.impl.GetResultServiceImpl;
 import com.siemens.osa.module.cs.service.getES.impl.GetESServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
 
-public class CompareDataServiceImpl implements ICompareData {
+public class CompareDataServiceServiceImpl implements ICompareDataService {
     private GetESInfoServiceImpl esInfoGetService;
     private ResultInfoMapper resultInfoMapper;
 
-    public CompareDataServiceImpl() {
+    public CompareDataServiceServiceImpl() {
     }
 
-    public CompareDataServiceImpl(ResultInfoMapper resultInfoMapper, GetESInfoServiceImpl esInfoGetService) {
+    public CompareDataServiceServiceImpl(ResultInfoMapper resultInfoMapper, GetESInfoServiceImpl esInfoGetService) {
         this.resultInfoMapper = resultInfoMapper;
         this.esInfoGetService = esInfoGetService;
     }

@@ -1,15 +1,15 @@
 package com.siemens.osa.module.cs.service.getCS.impl;
 
 import com.siemens.osa.data.cs.mapper.ResultInfoMapper;
-import com.siemens.osa.module.cs.service.getCS.IUpdateResult;
+import com.siemens.osa.module.cs.service.getCS.IUpdateResultService;
 
-public class UpdateResultServiceImpl implements IUpdateResult {
+public class UpdateResultServiceServiceImpl implements IUpdateResultService {
     private ResultInfoMapper resultInfoMapper;
 
-    public UpdateResultServiceImpl() {
+    public UpdateResultServiceServiceImpl() {
     }
 
-    public UpdateResultServiceImpl(ResultInfoMapper resultInfoMapper) {
+    public UpdateResultServiceServiceImpl(ResultInfoMapper resultInfoMapper) {
         this.resultInfoMapper = resultInfoMapper;
     }
 
