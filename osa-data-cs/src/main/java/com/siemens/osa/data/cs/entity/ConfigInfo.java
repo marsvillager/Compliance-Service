@@ -9,7 +9,7 @@ public class ConfigInfo {
     private Timestamp timestamp;
     private Integer id;
     private String os;
-    private String ruleId;
+    private String rule_id;
     private String data;
     private Integer type;
     private String param;
@@ -21,7 +21,7 @@ public class ConfigInfo {
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
-        this.ruleId = ruleId;
+        this.rule_id = ruleId;
         this.data = data;
         this.type = type;
         this.param = param;
@@ -52,11 +52,11 @@ public class ConfigInfo {
     }
 
     public String getRuleId() {
-        return ruleId;
+        return rule_id;
     }
 
     public void setRuleId(String ruleId) {
-        this.ruleId = ruleId;
+        this.rule_id = ruleId;
     }
 
     public String getData() {
@@ -89,7 +89,7 @@ public class ConfigInfo {
                 "timestamp=" + timestamp +
                 ", id=" + id +
                 ", os='" + os + '\'' +
-                ", ruleId='" + ruleId + '\'' +
+                ", ruleId='" + rule_id + '\'' +
                 ", data=" + data +
                 ", type=" + type +
                 ", param=" + param +

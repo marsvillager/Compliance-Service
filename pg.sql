@@ -28,7 +28,7 @@ CREATE TABLE public.config (
     "timestamp" timestamp with time zone NOT NULL,
     id integer NOT NULL,
     os text,
-    "ruleId" text,
+    rule_id text,
     data text[],
     type integer,
     param text[]
@@ -45,9 +45,9 @@ CREATE TABLE public.result (
     "timestamp" timestamp with time zone NOT NULL,
     id integer NOT NULL,
     os text,
-    "severIp" inet,
-    "hostIp" inet,
-    "ruleID" text,
+    sever_ip inet,
+    host_ip inet,
+    rule_id text,
     expected text[],
     actual text[],
     status text
@@ -60,7 +60,7 @@ ALTER TABLE public.result OWNER TO postgres;
 -- Data for Name: config; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.config ("timestamp", id, os, "ruleId", data, type, param) FROM stdin;
+COPY public.config ("timestamp", id, os, rule_id, data, type, param) FROM stdin;
 2022-07-05 17:40:27.19112+08	2	windows10	BL696_0461	{0}	0	{"Xbox Live 网络服务"}
 2022-07-05 17:56:24.686603+08	2	windows10	BL696_0086	{1}	0	{"Machine\\\\System\\\\CurrentControlSet\\\\Control\\\\SCMConfig:EnableSvchostMitigationPolicy"}
 2022-07-05 17:56:35.588643+08	2	windows10	BL696-0711	{0}	0	{"Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:EnableScripts","Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:ExecutionPolicy"}
@@ -74,7 +74,7 @@ COPY public.config ("timestamp", id, os, "ruleId", data, type, param) FROM stdin
 -- Data for Name: result; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.result ("timestamp", id, os, "severIp", "hostIp", "ruleID", expected, actual, status) FROM stdin;
+COPY public.result ("timestamp", id, os, sever_ip, host_ip, rule_id, expected, actual, status) FROM stdin;
 2022-07-05 17:40:27.19112+08	2	windows10	192.168.1.155	192.168.1.150	BL696_0461	{1}	{1}	pass
 \.
 

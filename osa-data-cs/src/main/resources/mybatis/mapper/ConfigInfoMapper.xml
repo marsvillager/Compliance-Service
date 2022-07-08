@@ -3,7 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.siemens.osa.data.cs.mapper.ConfigInfoMapper">
+    <!--    List<ConfigInfo> getAllConfig();-->
     <select id="getAllConfig" resultType="ConfigInfo">
         select * from config
+    </select>
+
+    <!--    Map<String,ConfigInfo> getConfigById(@Param("id") Integer id);-->
+    <select id="getConfigById" resultType="ConfigInfo">
+        select * from config where id = #{id}
     </select>
 </mapper>

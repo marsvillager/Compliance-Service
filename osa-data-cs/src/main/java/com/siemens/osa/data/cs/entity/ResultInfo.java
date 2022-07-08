@@ -9,9 +9,9 @@ public class ResultInfo {
     private Timestamp timestamp;
     private Integer id;
     private String os;
-    private String ruleId;
-    private String serverIp;
-    private String hostIp;
+    private String rule_id;
+    private String server_ip;
+    private String host_ip;
     private String expected;
     private String actual;
     private String status;
@@ -23,9 +23,9 @@ public class ResultInfo {
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
-        this.ruleId = ruleId;
-        this.serverIp = serverIp;
-        this.hostIp = hostIp;
+        this.rule_id = ruleId;
+        this.server_ip = serverIp;
+        this.host_ip = hostIp;
         this.expected = expected;
         this.actual = actual;
         this.status = status;
@@ -56,27 +56,27 @@ public class ResultInfo {
     }
 
     public String getRuleId() {
-        return ruleId;
+        return rule_id;
     }
 
     public void setRuleId(String ruleId) {
-        this.ruleId = ruleId;
+        this.rule_id = ruleId;
     }
 
     public String getServerIp() {
-        return serverIp;
+        return server_ip;
     }
 
     public void setServerIp(String serverIp) {
-        this.serverIp = serverIp;
+        this.server_ip = serverIp;
     }
 
     public String getHostIp() {
-        return hostIp;
+        return host_ip;
     }
 
     public void setHostIp(String hostIp) {
-        this.hostIp = hostIp;
+        this.host_ip = hostIp;
     }
 
     public String getExpected() {
@@ -109,9 +109,9 @@ public class ResultInfo {
                 "timestamp=" + timestamp +
                 ", id=" + id +
                 ", os='" + os + '\'' +
-                ", ruleId='" + ruleId + '\'' +
-                ", serverIp='" + serverIp + '\'' +
-                ", hostIp='" + hostIp + '\'' +
+                ", ruleId='" + rule_id + '\'' +
+                ", serverIp='" + server_ip + '\'' +
+                ", hostIp='" + host_ip + '\'' +
                 ", expected='" + expected + '\'' +
                 ", actual='" + actual + '\'' +
                 ", status='" + status + '\'' +
