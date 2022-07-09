@@ -53,7 +53,7 @@ public class GetESInfoServiceImpl implements IGetESInfoService {
             String collectTime = (String) sourceAsMap.get("collectTime");
             String ruleId = (String) sourceAsMap.get("ruleId");
             List<String> result = (List<String>) sourceAsMap.get("result");
-            String hostIP = (String) sourceAsMap.get("hostIP");
+            String hostIP = (String) sourceAsMap.get("hostIp");
 
             int id = Integer.parseInt(ID);
 

@@ -22,6 +22,11 @@ public class GetESTest {
         List<ESInfo> esInfoList = getESService.getES();
         for (ESInfo esInfo: esInfoList) {
             System.out.println(esInfo);
+            List<String> result = esInfo.getResult();
+            for (String s : result) {
+                System.out.println(s);
+                System.out.println(s.trim().equals("masked"));
+            }
         }
     }
 }
