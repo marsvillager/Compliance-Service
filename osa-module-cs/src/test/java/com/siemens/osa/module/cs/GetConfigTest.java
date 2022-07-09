@@ -29,7 +29,12 @@ public class GetConfigTest {
         int id = 2;
         GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configInfoMapper);
         Map<String, ConfigInfo> configById = getConfigService.getConfigById(id);
-        System.out.println(configById.get("BL696_0461"));
+        ConfigInfo configInfo = configById.get("BL999_6629");
+        System.out.println(configInfo);
+        String[] data = configInfo.getData();
+        for (String s : data) {
+            System.out.println(s);
+        }
     }
 
     @Test

@@ -13,14 +13,14 @@ public class ResultInfo {
     private String rule_id;
     private String server_ip;
     private String host_ip;
-    private List<String> expected;
-    private List<String> actual;
+    private String[] expected;
+    private String[] actual;
     private String status;
 
     public ResultInfo() {
     }
 
-    public ResultInfo(Timestamp timestamp, Integer id, String os, String ruleId, String serverIp, String hostIp, List<String> expected, List<String> actual, String status) {
+    public ResultInfo(Timestamp timestamp, Integer id, String os, String ruleId, String serverIp, String hostIp, String[] expected, String[] actual, String status) {
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
@@ -80,19 +80,19 @@ public class ResultInfo {
         this.host_ip = hostIp;
     }
 
-    public List<String> getExpected() {
+    public String[] getExpected() {
         return expected;
     }
 
-    public void setExpected(List<String> expected) {
+    public void setExpected(String[] expected) {
         this.expected = expected;
     }
 
-    public List<String> getActual() {
+    public String[] getActual() {
         return actual;
     }
 
-    public void setActual(List<String> actual) {
+    public void setActual(String[] actual) {
         this.actual = actual;
     }
 

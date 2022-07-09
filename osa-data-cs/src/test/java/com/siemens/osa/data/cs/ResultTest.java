@@ -28,7 +28,12 @@ public class ResultTest {
     public void testGetResultById(){
         int id = 2;
         Map<String, ResultInfo> resultInfoMap = resultInfoMapper.getResultById(id);
-        System.out.println(resultInfoMap.get("BL696_0461"));
+        ResultInfo resultInfo = resultInfoMap.get("BL999_6629");
+        System.out.println(resultInfo);
+        String[] expected = resultInfo.getExpected();
+        for (String s : expected) {
+            System.out.println(s);
+        }
     }
 
     @Test

@@ -9,12 +9,8 @@
         <result property="os" column="os"></result>
         <result property="rule_id" column="rule_id"></result>
         <result property="type" column="type"></result>
-        <collection property="data" ofType="String">
-            <id property="data" column="data"></id>
-        </collection>
-        <collection property="param" ofType="String">
-            <id property="param" column="param"></id>
-        </collection>
+        <result property="data" column="data" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>
+        <result property="param" column="param" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>
     </resultMap>
 
     <!--    List<ConfigInfo> getAllConfig();-->

@@ -23,13 +23,14 @@ public class InsertResultTest {
 
         List<String> expected = new ArrayList<>();
         expected.add("0");
-        expected.add("1");
+        expected.add("AllSigned");
         List<String> actual = new ArrayList<>();
         actual.add("0");
         actual.add("2");
         try {
-            updateResultService.insertResult(new Timestamp(System.currentTimeMillis()), 2, "win", InetAddress.getLocalHost().getHostAddress(),
-                    "192.168.1.155", "BL696_0461", expected, actual, "failed");
+            updateResultService.insertResult(new Timestamp(System.currentTimeMillis()), 2, "windows10",
+                    InetAddress.getLocalHost().getHostAddress(), "192.168.1.155", "BL696_0461",
+                    expected, actual, "failed");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

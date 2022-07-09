@@ -11,12 +11,8 @@
         <result property="server_ip" column="server_ip"></result>
         <result property="host_ip" column="host_ip"></result>
         <result property="status" column="status"></result>
-        <collection property="expected" ofType="String">
-            <id property="expected" column="expected"></id>
-        </collection>
-        <collection property="actual" ofType="String">
-            <id property="actual" column="actual"></id>
-        </collection>
+        <result property="expected" column="expected" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>
+        <result property="actual" column="actual" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>
     </resultMap>
 
     <!--    List<ResultInfo> getAllResult();-->
@@ -36,16 +32,30 @@
     <insert id="addResult" parameterType="ResultInfo">
         insert into result(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status)
         values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id},
-        <foreach collection="expected" item="expectedItem" index="index" open="'{" separator="," close="}'"> ${expectedItem} </foreach>,
-        <foreach collection="actual" item="actualItem" index="index" open="'{" separator="," close="}'"> ${actualItem} </foreach>, #{status})
+        <foreach collection="expected" item="expectedItem" index="index" open="'{" separator="," close="}'"> ${expectedItem} </foreach>::text[],
+        <foreach collection="actual" item="actualItem" index="index" open="'{" separator="," close="}'"> ${actualItem} </foreach>::text[], #{status})
     </insert>
-<!--    <insert id="addResult" parameterType="Result">-->
-<!--            insert into result(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status)-->
-<!--            values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id}, #{expected}::text[], #{actual}::text[], #{status})-->
-<!--    </insert>-->
+    <insert id="addResult0" parameterType="ResultInfo">
+        insert into result(timestamp, id, os, server_ip, host_ip, rule_id, status)
+        values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id}, #{status})
+    </insert>
+    <insert id="addResult1" parameterType="ResultInfo">
+        insert into result(timestamp, id, os, server_ip, host_ip, rule_id, expected, status)
+        values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id},
+        <foreach collection="expected" item="expectedItem" index="index" open="'{" separator="," close="}'"> ${expectedItem} </foreach>::text[], #{status})
+    </insert>
+    <insert id="addResult2" parameterType="ResultInfo">
+        insert into result(timestamp, id, os, server_ip, host_ip, rule_id, actual, status)
+        values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id},
+        <foreach collection="actual" item="actualItem" index="index" open="'{" separator="," close="}'"> ${actualItem} </foreach>::text[], #{status})
+    </insert>
+    <!--    <insert id="addResult" parameterType="Result">-->
+    <!--            insert into result(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status)-->
+    <!--            values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id}, #{expected}::text[], #{actual}::text[], #{status})-->
+    <!--    </insert>-->
 
-<!--    void updateResult(@Param("id") Integer id, @Param("ruleId") String ruleId, @Param("actual") String[] actual, @Param("status") String status);-->
-<!--    <update id="updateResult">-->
-<!--        update result set actual = #{actual}, status = #{status} where id = #{id} and rule_id = #{ruleId}-->
-<!--    </update>-->
+    <!--    void updateResult(@Param("id") Integer id, @Param("ruleId") String ruleId, @Param("actual") String[] actual, @Param("status") String status);-->
+    <!--    <update id="updateResult">-->
+    <!--        update result set actual = #{actual}, status = #{status} where id = #{id} and rule_id = #{ruleId}-->
+    <!--    </update>-->
 </mapper>
