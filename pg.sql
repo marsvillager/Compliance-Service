@@ -175,11 +175,12 @@ COMMENT ON COLUMN public.result.status IS '比对的结果（pass/failed）';
 
 COPY public.config ("timestamp", id, os, rule_id, data, type, param) FROM stdin;
 2022-07-05 17:56:24.686603+08	2	windows10	BL696_0086	{1}	0	{"Machine\\\\System\\\\CurrentControlSet\\\\Control\\\\SCMConfig:EnableSvchostMitigationPolicy"}
-2022-07-05 17:56:35.588643+08	2	windows10	BL696-0711	{0}	0	{"Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:EnableScripts","Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:ExecutionPolicy"}
 2022-07-05 17:56:48.169855+08	2	debain10	BL999_8949	{masked}	0	{"systemctl is-enabled ctrl-alt-del.target"}
 2022-07-05 17:57:27.191144+08	2	debain10	BL999_7387	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	0	{"sysctl fs.protected_symlinks","sysctl fs.protected_hardlinks"}
 2022-07-05 17:57:31.251354+08	2	debain10	BL999_6629	{0664,0,0}	0	{"stat /etc/issue"}
-2022-07-05 17:40:27.19112+08	2	windows10	BL696_0461	{0}	0	{"Xbox Live 网络服务"}
+2022-07-05 17:56:36.89954+08	2	windows10	BL696_7921	{1,2}	0	{"Software\\\\Policies\\\\Microsoft\\\\Windows\\\\SettingSync:DisableCredentialsSettingSync","Software\\\\Policies\\\\Microsoft\\\\Windows\\\\SettingSync:DisableCredentialsSettingSyncUserOverride"}
+2022-07-05 17:56:35.588643+08	2	windows10	BL696-0711	{1,AllSigned}	0	{"Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:EnableScripts","Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:ExecutionPolicy"}
+2022-07-05 17:40:27.19112+08	2	windows10	BL696_0461	\N	0	{"Xbox Live 网络服务"}
 \.
 
 
@@ -188,7 +189,26 @@ COPY public.config ("timestamp", id, os, rule_id, data, type, param) FROM stdin;
 --
 
 COPY public.result ("timestamp", id, os, server_ip, host_ip, rule_id, expected, actual, status) FROM stdin;
-2022-07-05 17:40:27.19112+08	2	windows10	192.168.1.155	192.168.1.150	BL696_0461	{0}	{0}	failed
+2022-07-09 20:33:54.901+08	2	debain10	222.20.75.121	10.16.146.226	BL999_8949	{masked}	{masked}	pass
+2022-07-09 20:33:55.53+08	2	debain10	222.20.75.121	10.16.146.226	BL999_7387	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	pass
+2022-07-09 20:33:55.533+08	2	debain10	222.20.75.121	10.16.146.226	BL999_6629	{0644,0,0}	{"文件：/etc/issue\n  大小：26        \t块：8          IO 块：4096   普通文件\n设备：801h/2049d\tInode：1835167     硬链接：1\n权限：(0644/-rw-r--r--)  Uid：(    0/    root)   Gid：(    0/    root)\n最近访问：2022-06-07 15:42:41.679758708 +0800\n最近更改：2021-09-06 18:47:40.000000000 +0800\n最近改动：2022-03-25 16:45:08.889985481 +0800\n创建时间：-"}	pass
+2022-07-09 20:33:55.537+08	2	debain10	222.20.75.121	10.16.146.226	BL999_6629	{0644,0,0}	{"文件：/etc/issue\n  大小：26        \t块：8          IO 块：4096   普通文件\n设备：801h/2049d\tInode：1835167     硬链接：1\n权限：(0644/-rw-r--r--)  Uid：(    0/    root)   Gid：(    0/    root)\n最近访问：2022-06-07 15:42:41.679758708 +0800\n最近更改：2021-09-06 18:47:40.000000000 +0800\n最近改动：2022-03-25 16:45:08.889985481 +0800\n创建时间：-","文件：/etc/issue\n  大小：26        \t块：8          IO 块：4096   普通文件\n设备：801h/2049d\tInode：1835167     硬链接：1\n权限：(0644/-rw-r--r--)  Uid：(    0/    root)   Gid：(    0/    root)\n最近访问：2022-06-07 15:42:41.679758708 +0800\n最近更改：2021-09-06 18:47:40.000000000 +0800\n最近改动：2022-03-25 16:45:08.889985481 +0800\n创建时间：-"}	pass
+2022-07-09 20:33:55.541+08	2	debain10	222.20.75.121	10.16.146.226	BL999_4000	{}	{}	pass
+2022-07-09 20:33:55.543+08	2	debain10	222.20.75.121	10.16.146.226	BL999_8949	{masked}	{masked}	pass
+2022-07-09 20:33:55.545+08	2	debain10	222.20.75.121	10.16.146.226	BL999_7387	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	pass
+2022-07-09 20:33:55.546+08	2	debain10	222.20.75.121	10.16.146.226	BL999_7387	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	pass
+2022-07-09 20:33:55.548+08	2	debain10	222.20.75.121	10.16.146.226	BL999_4000	{}	{}	pass
+2022-07-09 20:33:55.551+08	2	debain10	222.20.75.121	10.16.146.226	BL999_7387	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	pass
+2022-07-10 01:41:51.267+08	2	windows10	172.17.208.1	192.168.199.185	BL696-0711	{1,AllSigned}	\N	failed
+2022-07-10 01:41:51.367+08	2	windows10	172.17.208.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
+2022-07-10 01:41:51.372+08	2	windows10	172.17.208.1	192.168.199.185	BL696-0711	{1,AllSigned}	{1,AllSigned}	pass
+2022-07-10 01:41:51.38+08	2	windows10	172.17.208.1	192.168.199.185	BL696_0461	\N	{1}	failed
+2022-07-10 01:41:51.385+08	2	windows10	172.17.208.1	192.168.199.185	BL696_0461	\N	\N	pass
+2022-07-10 01:41:51.388+08	2	windows10	172.17.208.1	192.168.199.185	BL696_0086	{1}	\N	failed
+2022-07-10 01:41:51.392+08	2	windows10	172.17.208.1	192.168.199.185	BL696-0711	{1,AllSigned}	\N	failed
+2022-07-10 01:41:51.396+08	2	windows10	172.17.208.1	192.168.199.185	BL696_0086	{1}	\N	failed
+2022-07-10 01:41:51.399+08	2	windows10	172.17.208.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
+2022-07-10 01:41:51.403+08	2	windows10	172.17.208.1	192.168.199.185	BL696_0086	{1}	\N	failed
 \.
 
 
