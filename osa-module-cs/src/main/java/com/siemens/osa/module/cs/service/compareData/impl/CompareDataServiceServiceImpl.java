@@ -64,7 +64,6 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
             String[] data = configInfo.getData();
             //获取ES对应ruleID检查项的结果
             List<String> result = esInfo.getResult();
-            int count = 0;
             if (type == 1) {
                 for (String re : result) {
                     List<String> strings = StringFilter(re);
@@ -85,8 +84,6 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
                 }
                 insertResultServiceService.insertResult(time,id,configInfo.getOs(),hostAddress,esInfo.getHostIp(),esInfo.getRuleID(),Arrays.asList(configInfo.getData()),esInfo.getResult(),status);
             } else {
-                count += 1;
-                System.out.println("count: " + count);
                 if ((result.size() == 0 && data != null) || (result.size() != 0 && data == null)) {
                     status="failed";
                     System.out.println("failed");
