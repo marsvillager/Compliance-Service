@@ -21,6 +21,10 @@ public class GetResultTest {
         List<ResultInfo> resultInfoList = getResultService.getResult();
         for (ResultInfo resultInfo: resultInfoList) {
             System.out.println(resultInfo);
+            String[] data = resultInfo.getExpected();
+            for (String datum : data) {
+                System.out.println(datum);
+            }
         }
     }
 

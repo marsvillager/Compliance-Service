@@ -21,6 +21,11 @@ public class GetConfigTest {
         List<ConfigInfo> configInfoList = getConfigService.getConfig();
         for (ConfigInfo configInfo: configInfoList) {
             System.out.println(configInfo);
+            String[] data = configInfo.getData();
+            if (data != null)
+                for (String datum : data) {
+                    System.out.println(datum);
+                }
         }
     }
 
