@@ -89,9 +89,10 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
                     System.out.println("failed");
                 } else {
                     for (int i = 0; i < result.size(); i++) {
-                        // es 字符串读出带有引号
-                        if (configInfo.getOs().equals("windows10") && result.get(i).contains("\""))
-                            data[i] = '"' + data[i] + '"';
+//                        // es 字符串读出带有引号
+//                        if (configInfo.getOs().equals("windows10") && result.get(i).contains("\""))
+//                            data[i] = '"' + data[i] + '"';
+                        result.set(i, result.get(i).replace("\"", ""));
 
                         if (!result.get(i).trim().equals(data[i])) {
                             System.out.println("##################");
