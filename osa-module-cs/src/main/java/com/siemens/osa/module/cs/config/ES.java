@@ -17,7 +17,7 @@ public class ES {
     private String index;
 
     @Bean( "esInfo")
-    public GetESInfoServiceImpl esInfoGetService(){
+    public GetESInfoServiceImpl esInfoGetService() {
         String[] split = hostList.split(",");
         HttpHost[] httpHostsArray = new HttpHost[split.length];
         for (int i = 0; i < split.length; i++) {
@@ -26,6 +26,6 @@ public class ES {
         }
         RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(httpHostsArray));
 
-        return new GetESInfoServiceImpl(client,index);
+        return new GetESInfoServiceImpl(client, index);
     }
 }

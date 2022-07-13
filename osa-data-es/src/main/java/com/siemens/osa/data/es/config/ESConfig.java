@@ -14,7 +14,7 @@ public class ESConfig {
     private String hostList;
 
     @Bean
-    public RestHighLevelClient restHighLevelClient(){
+    public RestHighLevelClient restHighLevelClient() {
         String[] split = hostList.split(",");
         HttpHost[] httpHostsArray = new HttpHost[split.length];
         for (int i = 0; i < split.length; i++) {

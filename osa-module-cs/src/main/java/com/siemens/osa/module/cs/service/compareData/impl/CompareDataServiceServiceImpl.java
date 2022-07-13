@@ -13,7 +13,6 @@ import com.siemens.osa.module.cs.service.getES.impl.GetESServiceImpl;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,8 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
     private ConfigInfoMapper configInfoMapper;
     private ResultInfoMapper resultInfoMapper;
 
-    public  CompareDataServiceServiceImpl(GetESInfoServiceImpl esInfoGetService, ConfigInfoMapper configInfoMapper, ResultInfoMapper resultInfoMapper) {
+    public  CompareDataServiceServiceImpl(GetESInfoServiceImpl esInfoGetService, ConfigInfoMapper configInfoMapper,
+                                          ResultInfoMapper resultInfoMapper) {
         this.esInfoGetService = esInfoGetService;
         this.configInfoMapper = configInfoMapper;
         this.resultInfoMapper = resultInfoMapper;
@@ -36,7 +36,8 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
     public void compareData() throws UnknownHostException {
         GetESServiceImpl getESService = new GetESServiceImpl(esInfoGetService);
         GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configInfoMapper);
-        InsertResultServiceServiceImpl insertResultServiceService = new InsertResultServiceServiceImpl(resultInfoMapper);
+        InsertResultServiceServiceImpl insertResultServiceService =
+                new InsertResultServiceServiceImpl(resultInfoMapper);
 
         // TODO 过滤时间
         //获取ES数据库
@@ -47,13 +48,13 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
         Map<String, ConfigInfo> configInfoMap = configInfoMapper.getConfigById(id);
 
         for (ESInfo esInfo : esInfoList) {
-            String status="pass";
+            String status = "pass";
             String hostAddress = InetAddress.getLocalHost().getHostAddress();
-            Timestamp time= new Timestamp(System.currentTimeMillis());
+            Timestamp time = new Timestamp(System.currentTimeMillis());
 
             //若ES中配置文件id不同，可以获取对应的配置文件
             if (esInfo.getID() != id) {
-                id=esInfo.getID();
+                id = esInfo.getID();
                 configInfoMap = configInfoMapper.getConfigById(id);
             }
             //根据结果ruleID获取对应的config配置信息
@@ -67,25 +68,26 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
             if (type == 1) {
                 for (String re : result) {
                     List<String> strings = StringFilter(re);
-                    System.out.println(strings+"$$$");
+                    System.out.println(strings + "$$$");
                     for (int i = 0; i < strings.size(); i++) {
-                        if(!strings.get(i).trim().equals(data[i]))
-                        {
+                        if (!strings.get(i).trim().equals(data[i])) {
                             System.out.println("##################");
                             System.out.println(strings.get(i).trim());
                             System.out.println(data[i]);
                             System.out.println("##################");
-                            status="failed";
+                            status = "failed";
                             break;
                         }
                     }
-                    if(status.equals("failed"))
+                    if (status.equals("failed")) {
                         break;
+                    }
                 }
-                insertResultServiceService.insertResult(time,id,configInfo.getOs(),hostAddress,esInfo.getHostIp(),esInfo.getRuleID(),Arrays.asList(configInfo.getData()),esInfo.getResult(),status);
+                insertResultServiceService.insertResult(time, id, configInfo.getOs(), hostAddress, esInfo.getHostIp(),
+                        esInfo.getRuleID(), Arrays.asList(configInfo.getData()), esInfo.getResult(), status);
             } else {
                 if ((result.size() == 0 && data != null) || (result.size() != 0 && data == null)) {
-                    status="failed";
+                    status = "failed";
                     System.out.println("failed");
                 } else {
                     for (int i = 0; i < result.size(); i++) {
@@ -105,18 +107,20 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
                     }
                 }
 
-                if (configInfo.getData() != null && esInfo.getResult().size() != 0)
-                    insertResultServiceService.insertResult(time,id,configInfo.getOs(),hostAddress,esInfo.getHostIp(),
-                            esInfo.getRuleID(),Arrays.asList(configInfo.getData()), esInfo.getResult(),status);
-                else if (configInfo.getData() == null && esInfo.getResult().size() == 0){
-                    insertResultServiceService.insertResult0(time,id,configInfo.getOs(),hostAddress,esInfo.getHostIp(),
-                            esInfo.getRuleID(),status);
-                } else if (configInfo.getData() == null)
-                    insertResultServiceService.insertResult2(time,id,configInfo.getOs(),hostAddress,esInfo.getHostIp(),
-                            esInfo.getRuleID(),esInfo.getResult(),status);
-                else
-                    insertResultServiceService.insertResult1(time,id,configInfo.getOs(),hostAddress,esInfo.getHostIp(),
-                            esInfo.getRuleID(),Arrays.asList(configInfo.getData()),status);
+                if (configInfo.getData() != null && esInfo.getResult().size() != 0) {
+                    insertResultServiceService.insertResult(time, id, configInfo.getOs(), hostAddress,
+                            esInfo.getHostIp(), esInfo.getRuleID(), Arrays.asList(configInfo.getData()),
+                            esInfo.getResult(), status);
+                } else if (configInfo.getData() == null && esInfo.getResult().size() == 0) {
+                    insertResultServiceService.insertResult0(time, id, configInfo.getOs(), hostAddress,
+                            esInfo.getHostIp(), esInfo.getRuleID(), status);
+                } else if (configInfo.getData() == null) {
+                    insertResultServiceService.insertResult2(time, id, configInfo.getOs(), hostAddress,
+                            esInfo.getHostIp(), esInfo.getRuleID(), esInfo.getResult(), status);
+                } else {
+                    insertResultServiceService.insertResult1(time, id, configInfo.getOs(), hostAddress,
+                            esInfo.getHostIp(), esInfo.getRuleID(), Arrays.asList(configInfo.getData()), status);
+                }
             }
         }
     }

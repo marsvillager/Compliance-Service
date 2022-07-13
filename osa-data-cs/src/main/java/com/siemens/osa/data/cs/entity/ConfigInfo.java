@@ -17,7 +17,8 @@ public class ConfigInfo {
     public ConfigInfo() {
     }
 
-    public ConfigInfo(Timestamp timestamp, Integer id, String os, String ruleId, String[] data, Integer type, String[] param) {
+    public ConfigInfo(Timestamp timestamp, Integer id, String os, String ruleId, String[] data, Integer type,
+                      String[] param) {
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
@@ -85,14 +86,13 @@ public class ConfigInfo {
 
     @Override
     public String toString() {
-        return "ConfigInfo{" +
-                "timestamp=" + timestamp +
-                ", id=" + id +
-                ", os='" + os + '\'' +
-                ", ruleId='" + rule_id + '\'' +
-                ", data=" + data +
-                ", type=" + type +
-                ", param=" + param +
-                '}';
+        return "ConfigInfo{"
+                + "timestamp=" + timestamp
+                + ", id=" + id
+                + ", os='" + os + '\''
+                + ", ruleId='" + rule_id + '\''
+                + ", data=" + data
+                + ", type=" + type
+                + ", param=" + param + '}';
     }
 }

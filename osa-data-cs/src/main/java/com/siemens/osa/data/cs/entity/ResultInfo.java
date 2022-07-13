@@ -106,16 +106,15 @@ public class ResultInfo {
 
     @Override
     public String toString() {
-        return "ResultInfo{" +
-                "timestamp=" + timestamp +
-                ", id=" + id +
-                ", os='" + os + '\'' +
-                ", ruleId='" + rule_id + '\'' +
-                ", serverIp='" + server_ip + '\'' +
-                ", hostIp='" + host_ip + '\'' +
-                ", expected='" + expected + '\'' +
-                ", actual='" + actual + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+        return "ResultInfo{"
+                + "timestamp=" + timestamp
+                + ", id=" + id
+                + ", os='" + os + '\''
+                + ", ruleId='" + rule_id + '\''
+                + ", serverIp='" + server_ip + '\''
+                + ", hostIp='" + host_ip + '\''
+                + ", expected='" + expected + '\''
+                + ", actual='" + actual + '\''
+                + ", status='" + status + '\'' + '}';
     }
 }

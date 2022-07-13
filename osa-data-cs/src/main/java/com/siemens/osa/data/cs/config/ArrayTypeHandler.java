@@ -14,20 +14,21 @@ public class ArrayTypeHandler extends BaseTypeHandler<Object[]> {
     private static final String ARRAY_TYPE_BOOLEAN = "boolean";
 
     @Override
-    public void setNonNullParameter(PreparedStatement preparedStatement, int i, Object[] objects, JdbcType jdbcType) throws SQLException {
-        String typeName=null;
+    public void setNonNullParameter(PreparedStatement preparedStatement, int i, Object[] objects, JdbcType jdbcType)
+            throws SQLException {
+        String typeName = null;
         if (objects instanceof Integer[]) {
             typeName = ARRAY_TYPE_INTEGER;
         } else if (objects instanceof String[]) {
             typeName = ARRAY_TYPE_VARCHAR;
         } else if (objects instanceof Double[]) {
             typeName = ARRAY_TYPE_NUMERIC;
-        }else if (objects instanceof Boolean[]) {
+        } else if (objects instanceof Boolean[]) {
             typeName = ARRAY_TYPE_BOOLEAN;
         }
 
         if (typeName == null) {
-            throw new TypeException(objects.getClass().getName()+" can not match a array-type");
+            throw new TypeException(objects.getClass().getName() + " can not match a array-type");
         }
 
         Connection connection = preparedStatement.getConnection();
