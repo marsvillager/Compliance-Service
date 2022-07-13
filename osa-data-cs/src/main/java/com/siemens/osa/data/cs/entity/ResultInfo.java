@@ -12,9 +12,9 @@ public class ResultInfo {
     private Integer id;
     private String os;
     private String lang;
-    private String rule_id;
-    private String server_ip;
-    private String host_ip;
+    private String ruleId;
+    private String serverIp;
+    private String hostIp;
     private String[] expected;
     private String[] actual;
     private String status;
@@ -22,16 +22,16 @@ public class ResultInfo {
     public ResultInfo() {
     }
 
-    public ResultInfo(long cid, Timestamp timestamp, Integer id, String os, String lang, String rule_id,
-                      String server_ip, String host_ip, String[] expected, String[] actual, String status) {
+    public ResultInfo(long cid, Timestamp timestamp, Integer id, String os, String lang, String ruleId,
+                      String serverIp, String hostIp, String[] expected, String[] actual, String status) {
         this.cid = cid;
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
         this.lang = lang;
-        this.rule_id = rule_id;
-        this.server_ip = server_ip;
-        this.host_ip = host_ip;
+        this.ruleId = ruleId;
+        this.serverIp = serverIp;
+        this.hostIp = hostIp;
         this.expected = expected;
         this.actual = actual;
         this.status = status;
@@ -77,28 +77,28 @@ public class ResultInfo {
         this.lang = lang;
     }
 
-    public String getRule_id() {
-        return rule_id;
+    public String getRuleId() {
+        return ruleId;
     }
 
-    public void setRule_id(String rule_id) {
-        this.rule_id = rule_id;
+    public void setRuleId(String ruleId) {
+        this.ruleId = ruleId;
     }
 
-    public String getServer_ip() {
-        return server_ip;
+    public String getServerIp() {
+        return serverIp;
     }
 
-    public void setServer_ip(String server_ip) {
-        this.server_ip = server_ip;
+    public void setServerIp(String serverIp) {
+        this.serverIp = serverIp;
     }
 
-    public String getHost_ip() {
-        return host_ip;
+    public String getHostIp() {
+        return hostIp;
     }
 
-    public void setHost_ip(String host_ip) {
-        this.host_ip = host_ip;
+    public void setHostIp(String hostIp) {
+        this.hostIp = hostIp;
     }
 
     public String[] getExpected() {
@@ -133,9 +133,9 @@ public class ResultInfo {
                 + ", id=" + id
                 + ", os='" + os + '\''
                 + ", lang='" + lang + '\''
-                + ", rule_id='" + rule_id + '\''
-                + ", server_ip='" + server_ip + '\''
-                + ", host_ip='" + host_ip + '\''
+                + ", rule_id='" + ruleId + '\''
+                + ", server_ip='" + serverIp + '\''
+                + ", host_ip='" + hostIp + '\''
                 + ", expected=" + Arrays.toString(expected)
                 + ", actual=" + Arrays.toString(actual)
                 + ", status='" + status + '\'' + '}';

@@ -9,7 +9,7 @@
         <result property="id" column="id"></result>
         <result property="os" column="os"></result>
         <result property="lang" column="lang"></result>
-        <result property="rule_id" column="rule_id"></result>
+        <result property="ruleId" column="rule_id"></result>
         <result property="type" column="type"></result>
         <result property="data" column="data" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>
         <result property="param" column="param" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>

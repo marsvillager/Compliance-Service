@@ -17,26 +17,26 @@ public class InsertResultServiceServiceImpl implements IInsertResultService {
     }
 
     @Override
-    public void insertResult(Timestamp timestamp, Integer id, String os, String lang, String server_ip, String host_ip,
-                             String rule_id, List<String> expected, List<String> actual, String status) {
-        resultInfoMapper.addResult(timestamp, id, os, lang, server_ip, host_ip, rule_id, expected, actual, status);
+    public void insertResult(Timestamp timestamp, Integer id, String os, String lang, String serverIp, String hostIp,
+                             String ruleId, List<String> expected, List<String> actual, String status) {
+        resultInfoMapper.addResult(timestamp, id, os, lang, serverIp, hostIp, ruleId, expected, actual, status);
     }
 
     @Override
-    public void insertResult0(Timestamp timestamp, Integer id, String os, String lang, String server_ip, String host_ip,
-                              String rule_id, String status) {
-        resultInfoMapper.addResult0(timestamp, id, os, lang, server_ip, host_ip, rule_id, status);
+    public void insertResult0(Timestamp timestamp, Integer id, String os, String lang, String serverIp, String hostIp,
+                              String ruleId, String status) {
+        resultInfoMapper.addResult0(timestamp, id, os, lang, serverIp, hostIp, ruleId, status);
     }
 
     @Override
-    public void insertResult1(Timestamp timestamp, Integer id, String os, String lang, String server_ip, String host_ip,
-                              String rule_id, List<String> expected, String status) {
-        resultInfoMapper.addResult1(timestamp, id, os, lang, server_ip, host_ip, rule_id, expected, status);
+    public void insertResult1(Timestamp timestamp, Integer id, String os, String lang, String serverIp, String hostIp,
+                              String ruleId, List<String> expected, String status) {
+        resultInfoMapper.addResult1(timestamp, id, os, lang, serverIp, hostIp, ruleId, expected, status);
     }
 
     @Override
-    public void insertResult2(Timestamp timestamp, Integer id, String os, String lang, String server_ip, String host_ip,
-                              String rule_id, List<String> actual, String status) {
-        resultInfoMapper.addResult2(timestamp, id, os, lang, server_ip, host_ip, rule_id, actual, status);
+    public void insertResult2(Timestamp timestamp, Integer id, String os, String lang, String serverIp, String hostIp,
+                              String ruleId, List<String> actual, String status) {
+        resultInfoMapper.addResult2(timestamp, id, os, lang, serverIp, hostIp, ruleId, actual, status);
     }
 }

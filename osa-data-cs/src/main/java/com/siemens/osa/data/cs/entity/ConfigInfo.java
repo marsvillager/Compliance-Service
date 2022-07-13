@@ -12,7 +12,7 @@ public class ConfigInfo {
     private Integer id;
     private String os;
     private String lang;
-    private String rule_id;
+    private String ruleId;
     private String[] data;
     private Integer type;
     private String[] param;
@@ -27,7 +27,7 @@ public class ConfigInfo {
         this.id = id;
         this.os = os;
         this.lang = lang;
-        this.rule_id = ruleId;
+        this.ruleId = ruleId;
         this.data = data;
         this.type = type;
         this.param = param;
@@ -73,12 +73,12 @@ public class ConfigInfo {
         this.lang = lang;
     }
 
-    public String getRule_id() {
-        return rule_id;
+    public String getRuleId() {
+        return ruleId;
     }
 
-    public void setRule_id(String rule_id) {
-        this.rule_id = rule_id;
+    public void setRuleId(String ruleId) {
+        this.ruleId = ruleId;
     }
 
     public String[] getData() {
@@ -113,7 +113,7 @@ public class ConfigInfo {
                 + ", id=" + id
                 + ", os='" + os + '\''
                 + ", lang='" + lang + '\''
-                + ", rule_id='" + rule_id + '\''
+                + ", rule_id='" + ruleId + '\''
                 + ", data=" + Arrays.toString(data)
                 + ", type=" + type
                 + ", param=" + Arrays.toString(param) + '}';

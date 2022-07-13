@@ -9,9 +9,9 @@
         <result property="id" column="id"></result>
         <result property="os" column="os"></result>
         <result property="lang" column="lang"></result>
-        <result property="rule_id" column="rule_id"></result>
-        <result property="server_ip" column="server_ip"></result>
-        <result property="host_ip" column="host_ip"></result>
+        <result property="ruleId" column="rule_id"></result>
+        <result property="serverIp" column="server_ip"></result>
+        <result property="hostIp" column="host_ip"></result>
         <result property="status" column="status"></result>
         <result property="expected" column="expected" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>
         <result property="actual" column="actual" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>
@@ -28,32 +28,32 @@
     </select>
 
     <!--    void addResult(@Param("timestamp") Timestamp timestamp, @Param("id") Integer id, @Param("os") String os,-->
-    <!--    @Param("lang") String lang, @Param("server_ip") String server_ip, @Param("host_ip") String host_ip,-->
-    <!--    @Param("rule_id") String rule_id, @Param("expected") List<String> expected,-->
+    <!--    @Param("lang") String lang, @Param("serverIp") String serverIp, @Param("hostIp") String hostIp,-->
+    <!--    @Param("ruleId") String ruleId, @Param("expected") List<String> expected,-->
     <!--    @Param("actual") List<String> actual, @Param("status") String status);-->
     <insert id="addResult" parameterType="ResultInfo">
         insert into result(timestamp, id, os, lang, server_ip, host_ip, rule_id, expected, actual, status)
-        values(#{timestamp}, #{id}, #{os}, #{lang}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id},
+        values(#{timestamp}, #{id}, #{os}, #{lang}, #{serverIp}::inet, #{hostIp}::inet, #{ruleId},
         <foreach collection="expected" item="expectedItem" index="index" open="'{" separator="," close="}'"> ${expectedItem} </foreach>::text[],
         <foreach collection="actual" item="actualItem" index="index" open="'{" separator="," close="}'"> ${actualItem} </foreach>::text[], #{status})
     </insert>
     <insert id="addResult0" parameterType="ResultInfo">
         insert into result(timestamp, id, os, lang, server_ip, host_ip, rule_id, status)
-        values(#{timestamp}, #{id}, #{os}, #{lang}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id}, #{status})
+        values(#{timestamp}, #{id}, #{os}, #{lang}, #{serverIp}::inet, #{hostIp}::inet, #{ruleId}, #{status})
     </insert>
     <insert id="addResult1" parameterType="ResultInfo">
         insert into result(timestamp, id, os, lang, server_ip, host_ip, rule_id, expected, status)
-        values(#{timestamp}, #{id}, #{os}, #{lang}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id},
+        values(#{timestamp}, #{id}, #{os}, #{lang}, #{serverIp}::inet, #{hostIp}::inet, #{ruleId},
         <foreach collection="expected" item="expectedItem" index="index" open="'{" separator="," close="}'"> ${expectedItem} </foreach>::text[], #{status})
     </insert>
     <insert id="addResult2" parameterType="ResultInfo">
         insert into result(timestamp, id, os, lang, server_ip, host_ip, rule_id, actual, status)
-        values(#{timestamp}, #{id}, #{os}, #{lang}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id},
+        values(#{timestamp}, #{id}, #{os}, #{lang}, #{serverIp}::inet, #{hostIp}::inet, #{ruleId},
         <foreach collection="actual" item="actualItem" index="index" open="'{" separator="," close="}'"> ${actualItem} </foreach>::text[], #{status})
     </insert>
     <!--    <insert id="addResult" parameterType="Result">-->
     <!--            insert into result(timestamp, id, os, server_ip, host_ip, rule_id, expected, actual, status)-->
-    <!--            values(#{timestamp}, #{id}, #{os}, #{server_ip}::inet, #{host_ip}::inet, #{rule_id}, #{expected}::text[], #{actual}::text[], #{status})-->
+    <!--            values(#{timestamp}, #{id}, #{os}, #{serverIp}::inet, #{hostIp}::inet, #{ruleId}, #{expected}::text[], #{actual}::text[], #{status})-->
     <!--    </insert>-->
 
     <!--    void updateResult(@Param("id") Integer id, @Param("ruleId") String ruleId, @Param("actual") String[] actual, @Param("status") String status);-->

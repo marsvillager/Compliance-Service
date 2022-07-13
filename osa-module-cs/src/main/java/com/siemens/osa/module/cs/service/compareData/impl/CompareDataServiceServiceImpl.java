@@ -42,9 +42,9 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
         //获取ES数据库
         List<ESInfo> esInfoList = getESService.getES();
         //获取ES结果中配置文件版本ID
-        Integer id = esInfoList.get(0).getID();
+        Integer id = esInfoList.get(0).getId();
         //根据配置文件ID获取数据库配置文件
-        Map<String, ConfigInfo> configInfoMap = configInfoMapper.getConfigById(id);
+        Map<String, ConfigInfo> configInfoMap = getConfigService.getConfigById(id);
 
         Timestamp time = new Timestamp(System.currentTimeMillis());
 
@@ -53,13 +53,13 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
             String hostAddress = InetAddress.getLocalHost().getHostAddress();
 
             //若ES中配置文件id不同，可以获取对应的配置文件
-            if (esInfo.getID() != id) {
-                id = esInfo.getID();
+            if (esInfo.getId().equals(id)) {
+                id = esInfo.getId();
                 configInfoMap = configInfoMapper.getConfigById(id);
             }
             //根据结果ruleID获取对应的config配置信息
 //            System.out.println("before");
-            ConfigInfo configInfo = configInfoMap.get(esInfo.getRuleID());
+            ConfigInfo configInfo = configInfoMap.get(esInfo.getRuleId());
 //            System.out.println(configInfo);
             Integer type = configInfo.getType();
             String[] data = configInfo.getData();
@@ -84,7 +84,7 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
                     }
                 }
                 insertResultServiceService.insertResult(time, id, configInfo.getOs(), configInfo.getLang(), hostAddress,
-                        esInfo.getHostIp(), esInfo.getRuleID(), Arrays.asList(configInfo.getData()),
+                        esInfo.getHostIp(), esInfo.getRuleId(), Arrays.asList(configInfo.getData()),
                         esInfo.getResult(), status);
             } else {
                 if ((result.size() == 0 && data != null) || (result.size() != 0 && data == null)) {
@@ -107,17 +107,17 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
 
                 if (configInfo.getData() != null && esInfo.getResult().size() != 0) {
                     insertResultServiceService.insertResult(time, id, configInfo.getOs(), configInfo.getLang(),
-                            hostAddress, esInfo.getHostIp(), esInfo.getRuleID(), Arrays.asList(configInfo.getData()),
+                            hostAddress, esInfo.getHostIp(), esInfo.getRuleId(), Arrays.asList(configInfo.getData()),
                             esInfo.getResult(), status);
                 } else if (configInfo.getData() == null && esInfo.getResult().size() == 0) {
                     insertResultServiceService.insertResult0(time, id, configInfo.getOs(), configInfo.getLang(),
-                            hostAddress, esInfo.getHostIp(), esInfo.getRuleID(), status);
+                            hostAddress, esInfo.getHostIp(), esInfo.getRuleId(), status);
                 } else if (configInfo.getData() == null) {
                     insertResultServiceService.insertResult2(time, id, configInfo.getOs(), configInfo.getLang(),
-                            hostAddress, esInfo.getHostIp(), esInfo.getRuleID(), esInfo.getResult(), status);
+                            hostAddress, esInfo.getHostIp(), esInfo.getRuleId(), esInfo.getResult(), status);
                 } else {
                     insertResultServiceService.insertResult1(time, id, configInfo.getOs(), configInfo.getLang(),
-                            hostAddress, esInfo.getHostIp(), esInfo.getRuleID(),
+                            hostAddress, esInfo.getHostIp(), esInfo.getRuleId(),
                             Arrays.asList(configInfo.getData()), status);
                 }
             }

@@ -16,7 +16,7 @@ public class ES {
     @Value(value = "${es.index}")
     private String index;
 
-    @Bean( "esInfo")
+    @Bean("esInfo")
     public GetESInfoServiceImpl esInfoGetService() {
         String[] split = hostList.split(",");
         HttpHost[] httpHostsArray = new HttpHost[split.length];
