@@ -31,7 +31,7 @@ public class GetConfigTest {
 
     @Test
     public void testGetConfigById(){
-        int id = 1;
+        int id = 2;
         GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configInfoMapper);
         Map<String, ConfigInfo> configById = getConfigService.getConfigById(id);
         ConfigInfo configInfo = configById.get("BL999_6629");
