@@ -39,7 +39,6 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
         InsertResultServiceServiceImpl insertResultServiceService =
                 new InsertResultServiceServiceImpl(resultInfoMapper);
 
-        // TODO 过滤时间
         //获取ES数据库
         List<ESInfo> esInfoList = getESService.getES();
         //获取ES结果中配置文件版本ID
@@ -47,10 +46,11 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
         //根据配置文件ID获取数据库配置文件
         Map<String, ConfigInfo> configInfoMap = configInfoMapper.getConfigById(id);
 
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+
         for (ESInfo esInfo : esInfoList) {
             String status = "pass";
             String hostAddress = InetAddress.getLocalHost().getHostAddress();
-            Timestamp time = new Timestamp(System.currentTimeMillis());
 
             //若ES中配置文件id不同，可以获取对应的配置文件
             if (esInfo.getID() != id) {
@@ -83,17 +83,15 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
                         break;
                     }
                 }
-                insertResultServiceService.insertResult(time, id, configInfo.getOs(), hostAddress, esInfo.getHostIp(),
-                        esInfo.getRuleID(), Arrays.asList(configInfo.getData()), esInfo.getResult(), status);
+                insertResultServiceService.insertResult(time, id, configInfo.getOs(), configInfo.getLang(), hostAddress,
+                        esInfo.getHostIp(), esInfo.getRuleID(), Arrays.asList(configInfo.getData()),
+                        esInfo.getResult(), status);
             } else {
                 if ((result.size() == 0 && data != null) || (result.size() != 0 && data == null)) {
                     status = "failed";
                     System.out.println("failed");
                 } else {
                     for (int i = 0; i < result.size(); i++) {
-//                        // es 字符串读出带有引号
-//                        if (configInfo.getOs().equals("windows10") && result.get(i).contains("\""))
-//                            data[i] = '"' + data[i] + '"';
                         result.set(i, result.get(i).replace("\"", ""));
 
                         if (!result.get(i).trim().equals(data[i])) {
@@ -108,18 +106,19 @@ public class CompareDataServiceServiceImpl implements ICompareDataService {
                 }
 
                 if (configInfo.getData() != null && esInfo.getResult().size() != 0) {
-                    insertResultServiceService.insertResult(time, id, configInfo.getOs(), hostAddress,
-                            esInfo.getHostIp(), esInfo.getRuleID(), Arrays.asList(configInfo.getData()),
+                    insertResultServiceService.insertResult(time, id, configInfo.getOs(), configInfo.getLang(),
+                            hostAddress, esInfo.getHostIp(), esInfo.getRuleID(), Arrays.asList(configInfo.getData()),
                             esInfo.getResult(), status);
                 } else if (configInfo.getData() == null && esInfo.getResult().size() == 0) {
-                    insertResultServiceService.insertResult0(time, id, configInfo.getOs(), hostAddress,
-                            esInfo.getHostIp(), esInfo.getRuleID(), status);
+                    insertResultServiceService.insertResult0(time, id, configInfo.getOs(), configInfo.getLang(),
+                            hostAddress, esInfo.getHostIp(), esInfo.getRuleID(), status);
                 } else if (configInfo.getData() == null) {
-                    insertResultServiceService.insertResult2(time, id, configInfo.getOs(), hostAddress,
-                            esInfo.getHostIp(), esInfo.getRuleID(), esInfo.getResult(), status);
+                    insertResultServiceService.insertResult2(time, id, configInfo.getOs(), configInfo.getLang(),
+                            hostAddress, esInfo.getHostIp(), esInfo.getRuleID(), esInfo.getResult(), status);
                 } else {
-                    insertResultServiceService.insertResult1(time, id, configInfo.getOs(), hostAddress,
-                            esInfo.getHostIp(), esInfo.getRuleID(), Arrays.asList(configInfo.getData()), status);
+                    insertResultServiceService.insertResult1(time, id, configInfo.getOs(), configInfo.getLang(),
+                            hostAddress, esInfo.getHostIp(), esInfo.getRuleID(),
+                            Arrays.asList(configInfo.getData()), status);
                 }
             }
         }
