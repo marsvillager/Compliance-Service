@@ -45,7 +45,7 @@ public class ResultTest {
         actual.add("0");
         actual.add("2");
         try {
-            resultInfoMapper.addResult(new Timestamp(System.currentTimeMillis()), 2, "windows10",
+            resultInfoMapper.addResult(new Timestamp(System.currentTimeMillis()), 2, "windows10", "Chinese",
                     InetAddress.getLocalHost().getHostAddress(), "192.168.1.155", "BL696_0461",
                     expected, actual, "failed");
         } catch (UnknownHostException e) {

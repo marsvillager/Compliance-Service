@@ -3,13 +3,15 @@ package com.siemens.osa.data.cs.entity;
 import lombok.Data;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Arrays;
 
 @Data
 public class ResultInfo {
+    private long cid;
     private Timestamp timestamp;
     private Integer id;
     private String os;
+    private String lang;
     private String rule_id;
     private String server_ip;
     private String host_ip;
@@ -20,16 +22,27 @@ public class ResultInfo {
     public ResultInfo() {
     }
 
-    public ResultInfo(Timestamp timestamp, Integer id, String os, String ruleId, String serverIp, String hostIp, String[] expected, String[] actual, String status) {
+    public ResultInfo(long cid, Timestamp timestamp, Integer id, String os, String lang, String rule_id,
+                      String server_ip, String host_ip, String[] expected, String[] actual, String status) {
+        this.cid = cid;
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
-        this.rule_id = ruleId;
-        this.server_ip = serverIp;
-        this.host_ip = hostIp;
+        this.lang = lang;
+        this.rule_id = rule_id;
+        this.server_ip = server_ip;
+        this.host_ip = host_ip;
         this.expected = expected;
         this.actual = actual;
         this.status = status;
+    }
+
+    public long getCid() {
+        return cid;
+    }
+
+    public void setCid(long cid) {
+        this.cid = cid;
     }
 
     public Timestamp getTimestamp() {
@@ -56,28 +69,36 @@ public class ResultInfo {
         this.os = os;
     }
 
-    public String getRuleId() {
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getRule_id() {
         return rule_id;
     }
 
-    public void setRuleId(String ruleId) {
-        this.rule_id = ruleId;
+    public void setRule_id(String rule_id) {
+        this.rule_id = rule_id;
     }
 
-    public String getServerIp() {
+    public String getServer_ip() {
         return server_ip;
     }
 
-    public void setServerIp(String serverIp) {
-        this.server_ip = serverIp;
+    public void setServer_ip(String server_ip) {
+        this.server_ip = server_ip;
     }
 
-    public String getHostIp() {
+    public String getHost_ip() {
         return host_ip;
     }
 
-    public void setHostIp(String hostIp) {
-        this.host_ip = hostIp;
+    public void setHost_ip(String host_ip) {
+        this.host_ip = host_ip;
     }
 
     public String[] getExpected() {
@@ -107,14 +128,16 @@ public class ResultInfo {
     @Override
     public String toString() {
         return "ResultInfo{"
-                + "timestamp=" + timestamp
+                + "cid=" + cid
+                + ", timestamp=" + timestamp
                 + ", id=" + id
                 + ", os='" + os + '\''
-                + ", ruleId='" + rule_id + '\''
-                + ", serverIp='" + server_ip + '\''
-                + ", hostIp='" + host_ip + '\''
-                + ", expected='" + expected + '\''
-                + ", actual='" + actual + '\''
+                + ", lang='" + lang + '\''
+                + ", rule_id='" + rule_id + '\''
+                + ", server_ip='" + server_ip + '\''
+                + ", host_ip='" + host_ip + '\''
+                + ", expected=" + Arrays.toString(expected)
+                + ", actual=" + Arrays.toString(actual)
                 + ", status='" + status + '\'' + '}';
     }
 }

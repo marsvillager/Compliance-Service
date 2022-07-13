@@ -22,8 +22,10 @@ public class GetResultTest {
         for (ResultInfo resultInfo: resultInfoList) {
             System.out.println(resultInfo);
             String[] data = resultInfo.getExpected();
-            for (String datum : data) {
-                System.out.println(datum);
+            if (data != null) {
+                for (String datum : data) {
+                    System.out.println(datum);
+                }
             }
         }
     }

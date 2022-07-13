@@ -28,7 +28,7 @@ public class InsertResultTest {
         actual.add("0");
         actual.add("2");
         try {
-            updateResultService.insertResult(new Timestamp(System.currentTimeMillis()), 2, "windows10",
+            updateResultService.insertResult(new Timestamp(System.currentTimeMillis()), 2, "windows10", "Chinese",
                     InetAddress.getLocalHost().getHostAddress(), "192.168.1.155", "BL696_0461",
                     expected, actual, "failed");
         } catch (UnknownHostException e) {
