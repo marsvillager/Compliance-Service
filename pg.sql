@@ -135,7 +135,7 @@ COMMENT ON SEQUENCE public.cid IS 'config 自增主键';
 --
 
 CREATE TABLE public.result (
-    rid bigint,
+    rid bigint NOT NULL,
     "timestamp" timestamp with time zone NOT NULL,
     id integer NOT NULL,
     os text,
@@ -275,15 +275,15 @@ ALTER TABLE ONLY public.result ALTER COLUMN rid SET DEFAULT nextval('public.rid'
 --
 
 COPY public.config (cid, "timestamp", id, os, lang, rule_id, data, type, param) FROM stdin;
-122	2022-07-14 00:08:38.965811+08	1	debain10	Chinese	BL999_8949	{masked}	0	{"systemctl is-enabled ctrl-alt-del.target"}
-123	2022-07-14 00:08:38.965811+08	1	debain10	Chinese	BL999_7387	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	0	{"sysctl fs.protected_symlinks","sysctl fs.protected_hardlinks"}
-124	2022-07-14 00:08:38.965811+08	1	debain10	Chinese	BL999_3597	{""}	0	{"if echo $PATH | grep -q \\\\''::\\\\'' ; thenntecho \\\\''Empty Directory in PATH (::)\\\\''n  fin  if echo $PATH | grep -q \\\\'':$\\\\'' ; thenntecho \\\\''Trailing : in PATH\\\\''n  fin  for x in $(echo $PATH | tr \\\\'':\\\\'' \\\\'' \\\\'') ; dontif [ -d \\\\''$x\\\\'' ] ; thennt  ls -ldH \\\\''$x\\\\'' | awk nt  $9 == \\\\''.\\\\'' {print \\\\''PATH contains current working directory (.)\\\\''}nt  $3 != \\\\''root\\\\'' {print $9, \\\\''is not owned by root\\\\''}nt  substr($1,6,1) != \\\\''-\\\\'' {print $9, \\\\''is group writable\\\\''}nt  substr($1,9,1) != \\\\''-\\\\'' {print $9, \\\\''is world writable\\\\''} ntelsent  echo \\\\''$x is not a directory\\\\''ntfin  done"}
-125	2022-07-14 00:08:38.965811+08	1	debain10	Chinese	BL999_4000	{""}	0	{"mount | grep -E '\\\\\\\\s/dev/shm\\\\\\\\s' | grep -v nosuid"}
-126	2022-07-14 00:08:38.965811+08	1	debain10	Chinese	BL999_6629	{0644,0,0}	1	{"stat /etc/issue"}
-127	2022-07-14 00:08:38.965811+08	1	windows10	Chinese	BL696_0086	{1}	0	{"Machine\\\\\\\\System\\\\\\\\CurrentControlSet\\\\\\\\Control\\\\\\\\SCMConfig:EnableSvchostMitigationPolicy"}
-128	2022-07-14 00:08:38.965811+08	1	windows10	Chinese	BL696_7921	{1,2}	0	{"Software\\\\\\\\Policies\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\PowerShell:EnableScripts","Software\\\\\\\\Policies\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\PowerShell:ExecutionPolicy"}
-129	2022-07-14 00:08:38.965811+08	1	windows10	Chinese	BL696_0461	{}	0	{"Xbox Live 网络服务"}
-130	2022-07-14 00:08:38.965811+08	1	windows10	Chinese	BL696-0711	{1,AllSigned}	0	{"Machine\\\\\\\\Software\\\\\\\\Policies\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\PowerShell:EnableScripts","Machine\\\\\\\\Software\\\\\\\\Policies\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\PowerShell:ExecutionPolicy"}
+1	2022-07-14 02:28:42.950032+08	2	debain10	Chinese	BL999_8949	{masked}	0	{"systemctl is-enabled ctrl-alt-del.target"}
+2	2022-07-14 02:28:42.950032+08	2	debain10	Chinese	BL999_7387	{"fs.protected_symlinks = 1","fs.protected_hardlinks = 1"}	0	{"sysctl fs.protected_symlinks","sysctl fs.protected_hardlinks"}
+3	2022-07-14 02:28:42.950032+08	2	debain10	Chinese	BL999_3597	{""}	0	{"if echo $PATH | grep -q \\\\''::\\\\'' ; thenntecho \\\\''Empty Directory in PATH (::)\\\\''n  fin  if echo $PATH | grep -q \\\\'':$\\\\'' ; thenntecho \\\\''Trailing : in PATH\\\\''n  fin  for x in $(echo $PATH | tr \\\\'':\\\\'' \\\\'' \\\\'') ; dontif [ -d \\\\''$x\\\\'' ] ; thennt  ls -ldH \\\\''$x\\\\'' | awk nt  $9 == \\\\''.\\\\'' {print \\\\''PATH contains current working directory (.)\\\\''}nt  $3 != \\\\''root\\\\'' {print $9, \\\\''is not owned by root\\\\''}nt  substr($1,6,1) != \\\\''-\\\\'' {print $9, \\\\''is group writable\\\\''}nt  substr($1,9,1) != \\\\''-\\\\'' {print $9, \\\\''is world writable\\\\''} ntelsent  echo \\\\''$x is not a directory\\\\''ntfin  done"}
+4	2022-07-14 02:28:42.950032+08	2	debain10	Chinese	BL999_4000	{""}	0	{"mount | grep -E '\\\\\\\\s/dev/shm\\\\\\\\s' | grep -v nosuid"}
+5	2022-07-14 02:28:42.950032+08	2	debain10	Chinese	BL999_6629	{0644,0,0}	1	{"stat /etc/issue"}
+6	2022-07-14 02:28:42.950032+08	2	windows10	Chinese	BL696_0086	{1}	0	{"Machine\\\\\\\\System\\\\\\\\CurrentControlSet\\\\\\\\Control\\\\\\\\SCMConfig:EnableSvchostMitigationPolicy"}
+7	2022-07-14 02:28:42.950032+08	2	windows10	Chinese	BL696_7921	{1,2}	0	{"Software\\\\\\\\Policies\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\PowerShell:EnableScripts","Software\\\\\\\\Policies\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\PowerShell:ExecutionPolicy"}
+8	2022-07-14 02:28:42.950032+08	2	windows10	Chinese	BL696_0461	\N	0	{"Xbox Live 网络服务"}
+9	2022-07-14 02:28:42.950032+08	2	windows10	Chinese	BL696-0711	{1,AllSigned}	0	{"Machine\\\\\\\\Software\\\\\\\\Policies\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\PowerShell:EnableScripts","Machine\\\\\\\\Software\\\\\\\\Policies\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\PowerShell:ExecutionPolicy"}
 \.
 
 
@@ -291,7 +291,19 @@ COPY public.config (cid, "timestamp", id, os, lang, rule_id, data, type, param) 
 -- Data for Name: result; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.result ("timestamp", id, os, server_ip, host_ip, rule_id, expected, actual, status, rid, lang) FROM stdin;
+COPY public.result (rid, "timestamp", id, os, lang, server_ip, host_ip, rule_id, expected, actual, status) FROM stdin;
+1	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696-0711	{1,AllSigned}	\N	failed
+2	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
+3	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696-0711	{1,AllSigned}	{1,AllSigned}	pass
+4	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0461	\N	{1}	failed
+5	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0461	\N	\N	pass
+6	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0086	{1}	\N	failed
+7	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696-0711	{1,AllSigned}	\N	failed
+8	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0086	{1}	\N	failed
+9	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
+10	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0086	{1}	\N	failed
+11	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
+12	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0461	\N	{1}	failed
 \.
 
 
@@ -299,14 +311,14 @@ COPY public.result ("timestamp", id, os, server_ip, host_ip, rule_id, expected, 
 -- Name: cid; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.cid', 130, true);
+SELECT pg_catalog.setval('public.cid', 9, true);
 
 
 --
 -- Name: rid; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.rid', 2, true);
+SELECT pg_catalog.setval('public.rid', 12, true);
 
 
 --
