@@ -4,9 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.siemens.osa.data.cs.mapper.ConfigInfoMapper">
     <resultMap id="configList" type="ConfigInfo">
-        <id property="timestamp" column="timestamp"></id>
-        <id property="id" column="id"></id>
+        <id property="cid" column="cid"></id>
+        <result property="timestamp" column="timestamp"></result>
+        <result property="id" column="id"></result>
         <result property="os" column="os"></result>
+        <result property="lang" column="lang"></result>
         <result property="rule_id" column="rule_id"></result>
         <result property="type" column="type"></result>
         <result property="data" column="data" jdbcType="ARRAY" typeHandler="com.siemens.osa.data.cs.config.ArrayTypeHandler"></result>

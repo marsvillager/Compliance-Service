@@ -24,7 +24,7 @@ public class ConfigTest {
 
     @Test
     public void testGetConfigById(){
-        int id = 2;
+        int id = 1;
         Map<String, ConfigInfo> configInfoMap = configInfoMapper.getConfigById(id);
         ConfigInfo configInfo = configInfoMap.get("BL696-0711");
         String[] data = configInfo.getData();

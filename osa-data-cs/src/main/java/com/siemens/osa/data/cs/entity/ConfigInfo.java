@@ -3,12 +3,15 @@ package com.siemens.osa.data.cs.entity;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 @Data
 public class ConfigInfo {
+    private long cid;
     private Timestamp timestamp;
     private Integer id;
     private String os;
+    private String lang;
     private String rule_id;
     private String[] data;
     private Integer type;
@@ -17,15 +20,25 @@ public class ConfigInfo {
     public ConfigInfo() {
     }
 
-    public ConfigInfo(Timestamp timestamp, Integer id, String os, String ruleId, String[] data, Integer type,
-                      String[] param) {
+    public ConfigInfo(long cid, Timestamp timestamp, Integer id, String os, String lang, String ruleId, String[] data,
+                      Integer type, String[] param) {
+        this.cid = cid;
         this.timestamp = timestamp;
         this.id = id;
         this.os = os;
+        this.lang = lang;
         this.rule_id = ruleId;
         this.data = data;
         this.type = type;
         this.param = param;
+    }
+
+    public long getCid() {
+        return cid;
+    }
+
+    public void setCid(long cid) {
+        this.cid = cid;
     }
 
     public Timestamp getTimestamp() {
@@ -52,12 +65,20 @@ public class ConfigInfo {
         this.os = os;
     }
 
-    public String getRuleId() {
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getRule_id() {
         return rule_id;
     }
 
-    public void setRuleId(String ruleId) {
-        this.rule_id = ruleId;
+    public void setRule_id(String rule_id) {
+        this.rule_id = rule_id;
     }
 
     public String[] getData() {
@@ -87,12 +108,14 @@ public class ConfigInfo {
     @Override
     public String toString() {
         return "ConfigInfo{"
-                + "timestamp=" + timestamp
+                + "cid=" + cid
+                + ", timestamp=" + timestamp
                 + ", id=" + id
                 + ", os='" + os + '\''
-                + ", ruleId='" + rule_id + '\''
-                + ", data=" + data
+                + ", lang='" + lang + '\''
+                + ", rule_id='" + rule_id + '\''
+                + ", data=" + Arrays.toString(data)
                 + ", type=" + type
-                + ", param=" + param + '}';
+                + ", param=" + Arrays.toString(param) + '}';
     }
 }
