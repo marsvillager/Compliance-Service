@@ -17,6 +17,27 @@ public class ResultTest {
     ResultInfoMapper resultInfoMapper;
 
     @Test
+    public void testGetRecentResult(){
+        List<ResultInfo> recentResult = resultInfoMapper.getRecentResult();
+        for (ResultInfo resultInfo : recentResult) {
+            System.out.println(resultInfo);
+        }
+    }
+
+    //    select * from result where timestamp = (select max(timestamp) from result where timestamp >= timestamp '2022-07-19' and timestamp < timestamp '2022-7-20')
+    @Test
+    public void testGetRecentResultWithZone(){
+        String beginTimeStr = "2022-07-19 00:00:00";
+        String endTimeStr = "2022-07-20 00:00:00";
+        Timestamp beginTime = Timestamp.valueOf(beginTimeStr);
+        Timestamp endTime = Timestamp.valueOf(endTimeStr);
+        List<ResultInfo> recentResultWithZone = resultInfoMapper.getRecentResultWithZone(beginTime, endTime);
+        for (ResultInfo resultInfo : recentResultWithZone) {
+            System.out.println(resultInfo);
+        }
+    }
+
+    @Test
     public void testGetAllResult(){
         List<ResultInfo> allResult = resultInfoMapper.getAllResult();
         for (ResultInfo resultInfo : allResult) {

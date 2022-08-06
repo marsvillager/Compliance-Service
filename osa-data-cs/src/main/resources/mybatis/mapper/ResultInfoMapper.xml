@@ -27,6 +27,21 @@
         select * from result where id = #{id}
     </select>
 
+    <!--    Map<String,List<ResultInfo>> getRecentResult();-->
+    <select id="getRecentResult" resultMap="resultList">
+        select * from result where timestamp = (select max(timestamp) from result)
+    </select>
+
+    <!--    List<ResultInfo> getResultByHostIpTime(@Param("hostIp") String hostIp,@Param("collectTime") Timestamp collectTime);-->
+    <select id="getResultByHostIpTime" resultMap="resultList">
+        select * from result where host_ip=#{hostIp}::inet and timestamp = #{collectTime}
+    </select>
+
+    <!--    List<ResultInfo> getRecentResultWithZone(@Param("beginTime") Timestamp beginTime,@Param("endTime") Timestamp endTime);-->
+    <select id="getRecentResultWithZone" resultMap="resultList">
+        select * from result where timestamp = (select max(timestamp) from result where timestamp >= #{beginTime} and timestamp &lt; #{endTime})
+    </select>
+
     <!--    void addResult(@Param("timestamp") Timestamp timestamp, @Param("id") Integer id, @Param("os") String os,-->
     <!--    @Param("lang") String lang, @Param("serverIp") String serverIp, @Param("hostIp") String hostIp,-->
     <!--    @Param("ruleId") String ruleId, @Param("expected") List<String> expected,-->

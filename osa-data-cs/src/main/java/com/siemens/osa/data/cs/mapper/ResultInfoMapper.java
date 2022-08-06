@@ -18,6 +18,12 @@ public interface ResultInfoMapper {
     @MapKey("ruleId")
     Map<String, ResultInfo> getResultById(@Param("id") Integer id);
 
+    List<ResultInfo> getRecentResult();
+
+    List<ResultInfo> getResultByHostIpTime(@Param("hostIp") String hostIp,@Param("collectTime") Timestamp collectTime);
+
+    List<ResultInfo> getRecentResultWithZone(@Param("beginTime") Timestamp beginTime,@Param("endTime") Timestamp endTime);
+
     void addResult(@Param("timestamp") Timestamp timestamp, @Param("id") Integer id, @Param("os") String os,
                    @Param("lang") String lang, @Param("serverIp") String serverIp, @Param("hostIp") String hostIp,
                    @Param("ruleId") String ruleId, @Param("expected") List<String> expected,
