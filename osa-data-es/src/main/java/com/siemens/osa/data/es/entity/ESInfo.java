@@ -1,13 +1,10 @@
 package com.siemens.osa.data.es.entity;
 
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
-@Component
 public class ESInfo {
 
-    private String ID;
+    private Integer id;
 
     private String collectTime;
 
@@ -15,25 +12,25 @@ public class ESInfo {
 
     private String hostIp;
 
-    private String ruleID;
+    private String ruleId;
 
     public ESInfo() {
     }
 
-    public ESInfo(String ID, String collectTime, List<String> result, String hostIp, String ruleID) {
-        this.ID = ID;
+    public ESInfo(Integer id, String collectTime, List<String> result, String hostIp, String ruleId) {
+        this.id = id;
         this.collectTime = collectTime;
         this.result = result;
         this.hostIp = hostIp;
-        this.ruleID = ruleID;
+        this.ruleId = ruleId;
     }
 
-    public String getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCollectTime() {
@@ -60,18 +57,18 @@ public class ESInfo {
         this.hostIp = hostIp;
     }
 
-    public String getRuleID() {
-        return ruleID;
+    public String getRuleId() {
+        return ruleId;
     }
 
-    public void setRuleID(String ruleID) {
-        this.ruleID = ruleID;
+    public void setRuleId(String ruleId) {
+        this.ruleId = ruleId;
     }
 
     @Override
     public String toString() {
-        return "ESInfo{" + "ID=" + ID + ", collectTime='" + collectTime + '\'' + ", result=" + result + ", hostIp='"
-                + hostIp + '\'' + ", ruleID='" + ruleID + '\'' + '}';
+        return "ESInfo{" + "id=" + id + ", collectTime='" + collectTime + '\'' + ", result=" + result + ", hostIp='"
+                + hostIp + '\'' + ", ruleId='" + ruleId + '\'' + '}';
     }
 
 }
