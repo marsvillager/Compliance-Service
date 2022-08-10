@@ -11,8 +11,8 @@ public class resultReport {
     private List<hostResult> passHost;
 
     public resultReport() {
-        failedHostNum=0;
-        passHostNum=0;
+        failedHostNum = 0;
+        passHostNum = 0;
     }
 
     public resultReport(Timestamp collectTime, Integer failedHostNum, Integer passHostNum, List<hostResult> failedHost, List<hostResult> passHost) {
@@ -63,22 +63,22 @@ public class resultReport {
         this.passHost = passHost;
     }
 
-    public void failedHostNumUp(){
+    public void failedHostNumUp() {
         this.failedHostNum++;
     }
 
-    public void passHostNumUp(){
+    public void passHostNumUp() {
         this.passHostNum++;
     }
 
     @Override
     public String toString() {
-        return "resultReport{" +
-                "collectTime=" + collectTime +
-                ", failedHostNum=" + failedHostNum +
-                ", passHostNum=" + passHostNum +
-                ", failedHost=" + failedHost +
-                ", passHost=" + passHost +
-                '}';
+        return "resultReport{"
+                + "collectTime=" + collectTime
+                + ", failedHostNum=" + failedHostNum
+                + ", passHostNum=" + passHostNum
+                + ", failedHost=" + failedHost
+                + ", passHost=" + passHost
+                + '}';
     }
 }

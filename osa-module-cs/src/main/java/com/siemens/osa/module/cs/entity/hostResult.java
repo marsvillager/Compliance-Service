@@ -6,8 +6,8 @@ public class hostResult {
     private Integer failedNum;
 
     public hostResult() {
-        passNum=0;
-        failedNum=0;
+        passNum = 0;
+        failedNum = 0;
     }
 
     public hostResult(String hostIp, Integer passNum, Integer failedNum) {
@@ -40,20 +40,20 @@ public class hostResult {
         this.failedNum = failedNum;
     }
 
-    public void passNumUp(){
+    public void passNumUp() {
         this.passNum++;
     }
 
-    public void failedNumUp(){
+    public void failedNumUp() {
         this.failedNum++;
     }
 
     @Override
     public String toString() {
-        return "resultReport{" +
-                "hostIp='" + hostIp + '\'' +
-                ", passNum=" + passNum +
-                ", failedNum=" + failedNum +
-                '}';
+        return "resultReport{"
+                + "hostIp='" + hostIp + '\''
+                + ", passNum=" + passNum
+                + ", failedNum=" + failedNum
+                + '}';
     }
 }
