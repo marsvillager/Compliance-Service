@@ -17,12 +17,10 @@ public class ConfigTest {
     private ConfigService service;
 
     @Test
-    public void show() {
-        System.out.println("before test");
+    public void testGetAllConfig() {
         List<ConfigInfo> configInfoList = service.GetAllConfig();
-        for (ConfigInfo config: configInfoList) {
-            System.out.println(config.getParams());
+        for (ConfigInfo configInfo: configInfoList) {
+            System.out.println(configInfo);
         }
-        System.out.println("after test");
     }
 }

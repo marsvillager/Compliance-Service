@@ -17,12 +17,10 @@ public class ResultTest {
     private ResultService resultService;
 
     @Test
-    public void show() {
-        System.out.println("before test");
+    public void testGetRecentResult() {
         List<ResultInfo> resultInfoList = resultService.GetAllResult();
         for(ResultInfo resultInfo: resultInfoList) {
             System.out.println(resultInfo.toString());
         }
-        System.out.println("after test");
     }
 }

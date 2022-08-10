@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ResultInfoRepository extends JpaRepository<ResultInfo, String> {
+public interface ResultInfoRepository extends JpaRepository<ResultInfo, Long> {
     @Query(value = "select * from result", nativeQuery = true)
     List<ResultInfo> getAllResult();
 }

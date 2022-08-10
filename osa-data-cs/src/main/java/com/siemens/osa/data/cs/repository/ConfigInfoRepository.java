@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ConfigInfoRepository extends JpaRepository<ConfigInfo, String> {
+public interface ConfigInfoRepository extends JpaRepository<ConfigInfo, Long> {
     @Query(value = "select * from config", nativeQuery = true)
     List<ConfigInfo> getAllConfig();
 }
