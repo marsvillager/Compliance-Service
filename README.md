@@ -30,7 +30,7 @@ VALUES
 	(now(), 2, 'debain10',	'Chinese', 'BL999_4000', '{""}',	0,	'{"mount | grep -E ''\\\\s/dev/shm\\\\s'' | grep -v nosuid"}'),
 	(now(), 2, 'debain10',	'Chinese', 'BL999_6629', '{0644,0,0}',	1,	'{"stat /etc/issue"}'),
 	(now(), 2, 'windows10',	'Chinese', 'BL696_0086', '{1}',	0,	'{"Machine\\\\System\\\\CurrentControlSet\\\\Control\\\\SCMConfig:EnableSvchostMitigationPolicy"}'),
-	(now(), 2, 'windows10',	'Chinese', 'BL696_7921', '{1,2}',	0,	'{"Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:EnableScripts","Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:ExecutionPolicy"}'),
+	(now(), 2, 'windows10', 'Chinese', 'BL696_7921', '{2,1}', 0, '{"Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\SettingSync:DisableCredentialsSettingSync",                                              "Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\SettingSync:DisableCredentialsSettingSyncUserOverride"}'),
 	(now(),	2, 'windows10',	'Chinese', 'BL696_0461', null,	0,	'{"Xbox Live 网络服务"}'),
 	(now(),	2, 'windows10',	'Chinese', 'BL696-0711', '{1,AllSigned}',	0,	'{"Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:EnableScripts","Machine\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\PowerShell:ExecutionPolicy"}');
 ```
