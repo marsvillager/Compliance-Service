@@ -479,10 +479,10 @@ COPY public.config (cid, "timestamp", id, os, lang, rule_id, data, type, param) 
 --
 
 COPY public.result (rid, "timestamp", id, os, lang, server_ip, host_ip, rule_id, expected, actual, status) FROM stdin;
-2	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
-5	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0461	\N	\N	pass
-6	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0086	{1}	\N	failed
-1	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0711	{1,AllSigned}	\N	failed
+22	2022-08-11 23:57:59.082+08	2	windows10	Chinese	192.168.56.1	192.168.1.8	BL696_0461	\N	\N	pass
+23	2022-08-11 23:57:59.082+08	2	windows10	Chinese	192.168.56.1	192.168.1.8	BL696_0086	{1}	\N	failed
+24	2022-08-11 23:57:59.082+08	2	windows10	Chinese	192.168.56.1	192.168.1.8	BL696_7921	{2,1}	\N	failed
+25	2022-08-11 23:57:59.082+08	2	windows10	Chinese	192.168.56.1	192.168.1.8	BL696_0711	{1,AllSigned}	\N	failed
 \.
 
 
@@ -497,7 +497,7 @@ SELECT pg_catalog.setval('public.cid', 210, true);
 -- Name: rid; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.rid', 12, true);
+SELECT pg_catalog.setval('public.rid', 25, true);
 
 
 --
