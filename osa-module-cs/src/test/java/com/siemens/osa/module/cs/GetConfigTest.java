@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -23,6 +24,28 @@ public class GetConfigTest {
         List<ConfigInfo> configInfoList = getConfigService.getConfig();
         for (ConfigInfo configInfo: configInfoList) {
             System.out.println(configInfo);
+        }
+    }
+
+    @Test
+    public void testGetConfigById() {
+        int id = 2;
+        GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configService);
+        List<ConfigInfo> configInfoList = getConfigService.getConfigById(id);
+        for (ConfigInfo configInfo: configInfoList) {
+            System.out.println(configInfo);
+        }
+    }
+
+    @Test
+    public void testGetConfigMapById() {
+        int id = 2;
+        GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configService);
+        Map<String, ConfigInfo> configInfoMap = getConfigService.GetConfigMapById(id);
+        ConfigInfo configInfo = configInfoMap.get("BL696_0711");
+        String[] data = configInfo.getData();
+        for (String datum : data) {
+            System.out.println(datum);
         }
     }
 }

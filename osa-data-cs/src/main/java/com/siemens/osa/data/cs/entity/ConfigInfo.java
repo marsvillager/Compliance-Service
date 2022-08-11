@@ -22,7 +22,7 @@ import javax.persistence.*;
 })
 public class ConfigInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long cid;
 
     @Column(name = "timestamp", nullable = false)
