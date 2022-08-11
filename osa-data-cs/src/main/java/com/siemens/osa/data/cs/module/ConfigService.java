@@ -2,7 +2,6 @@ package com.siemens.osa.data.cs.module;
 
 import com.siemens.osa.data.cs.entity.ConfigInfo;
 import com.siemens.osa.data.cs.repository.ConfigInfoRepository;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -47,10 +47,11 @@ public class GenerateReportServiceImpl implements IGenerateReportService {
         List<resultReport> resultReportList = new LinkedList<>();
         while (calendar.before(endCalendar)) {
             Timestamp startTime = new Timestamp(calendar.getTimeInMillis());
-            calendar.add(filed,multiple);
+            calendar.add(filed, multiple);
             Timestamp terminalTime = new Timestamp(calendar.getTimeInMillis());
-            if (!calendar.before(endCalendar))
+            if (!calendar.before(endCalendar)) {
                 terminalTime = new Timestamp(endCalendar.getTimeInMillis());
+            }
             List<ResultInfo> recentResultWithZone = getResultService.GetRecentResultWithZone(startTime, terminalTime);
             if (recentResultWithZone.size() != 0) {
                 resultReport resultReport = getResultReport(recentResultWithZone);
@@ -61,7 +62,7 @@ public class GenerateReportServiceImpl implements IGenerateReportService {
     }
 
     public resultReport getResultReport(List<ResultInfo> recentResult) {
-        Map<String, hostResult> hostResults=new HashMap<>();
+        Map<String, hostResult> hostResults = new HashMap<>();
         resultReport resultReport = new resultReport();
         List<hostResult> passList = new LinkedList<>();
         List<hostResult> failedList = new LinkedList<>();
@@ -71,12 +72,13 @@ public class GenerateReportServiceImpl implements IGenerateReportService {
             if (!hostResults.containsKey(hostIp)) {
                 hostResult hostResult = new hostResult();
                 hostResult.setHostIp(hostIp);
-                hostResults.put(hostIp,hostResult);
+                hostResults.put(hostIp, hostResult);
             }
-            if (resultInfo.getStatus().equals("pass"))
+            if (resultInfo.getStatus().equals("pass")) {
                 hostResults.get(hostIp).passNumUp();
-            else if (resultInfo.getStatus().equals("failed"))
+            } else if (resultInfo.getStatus().equals("failed")) {
                 hostResults.get(hostIp).failedNumUp();
+            }
         }
         for (String s : hostResults.keySet()) {
             hostResult hostResult = hostResults.get(s);

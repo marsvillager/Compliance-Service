@@ -11,9 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @SpringBootTest
@@ -32,19 +29,6 @@ public class GenerateReportTest {
 
     @Value("${circle.multiple}")
     Integer multiple;
-
-    @Test
-    public void test() {
-        GetResultServiceImpl getResultService = new GetResultServiceImpl(resultService);
-        List<ResultInfo> resultInfoList = getResultService.GetResult();
-        for (ResultInfo resultInfo: resultInfoList) {
-            try {
-                System.out.println(InetAddress.getByName(resultInfo.getHostIP()));
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Test
     public void testGenerateInstantReport(){

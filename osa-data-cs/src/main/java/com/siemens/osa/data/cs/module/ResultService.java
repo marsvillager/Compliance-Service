@@ -32,23 +32,4 @@ public class ResultService {
     public List<ResultInfo> GetRecentResultWithZone(Timestamp beginTime, Timestamp endTime) {
         return resultInfoRepository.getRecentResultWithZone(beginTime, endTime);
     }
-
-//    public Map<String, ResultInfo> GetResultMapById(Integer id) {
-//        List<ResultInfo> resultInfoList = resultInfoRepository.getResultById(id);
-//        return resultInfoList.stream().collect(Collectors.toMap(k -> k.getRuleId(), v -> v));
-//    }
-
-//    public void addResult(Timestamp timestamp, Integer id, String os, String lang, String serverIp, String hostIp,
-//                     String ruleId, List<String> expected, List<String> actual, String status) {
-//        resultInfoRepository.addResult(timestamp, id, os, lang, serverIp, hostIp, ruleId, expected, actual, status);
-//    }
-
-//    public void addResult(Timestamp timestamp, Integer id, String os, String lang, String serverIp, String hostIp,
-//                          String ruleId, String status) {
-//        resultInfoRepository.addResult(timestamp, id, os, lang, serverIp, hostIp, ruleId, status);
-//    }
-
-    public void addResult(Timestamp timestamp, Integer id, String os, String lang) {
-        resultInfoRepository.addResult(timestamp, id, os, lang);
-    }
 }
