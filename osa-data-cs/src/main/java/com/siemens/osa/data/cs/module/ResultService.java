@@ -32,4 +32,9 @@ public class ResultService {
     public List<ResultInfo> GetRecentResultWithZone(Timestamp beginTime, Timestamp endTime) {
         return resultInfoRepository.getRecentResultWithZone(beginTime, endTime);
     }
+
+    public void addResult(Timestamp timestamp, Integer id, String os, String lang, String serverIp, String hostIp,
+                          String ruleId, String status) {
+        resultInfoRepository.addResult(timestamp, id, os, lang, serverIp, hostIp, ruleId, status);
+    }
 }

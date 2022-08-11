@@ -28,4 +28,10 @@ public interface ResultInfoRepository extends JpaRepository<ResultInfo, Long> {
             "timestamp >= :beginTime and timestamp < :endTime)", nativeQuery = true)
     List<ResultInfo> getRecentResultWithZone(@Param("beginTime") Timestamp beginTime,
                                              @Param("endTime") Timestamp endTime);
+
+    @Query(value = "insert into result(timestamp, id, os, lang, server_ip, host_ip, rule_id, status) values(" +
+            ":timestamp, :id, :os, :lang, inet(:serverIp), inet(:hostIp), :ruleId, :status)", nativeQuery = true)
+    void addResult(@Param("timestamp") Timestamp timestamp, @Param("id") Integer id, @Param("os") String os,
+                   @Param("lang") String lang, @Param("serverIp") String serverIp, @Param("hostIp") String hostIp,
+                   @Param("ruleId") String ruleId, @Param("status") String status);
 }

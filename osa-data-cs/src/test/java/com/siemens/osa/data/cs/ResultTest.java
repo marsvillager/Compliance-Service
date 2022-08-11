@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,23 @@ public class ResultTest {
         List<ResultInfo> recentResultWithZone = resultService.GetRecentResultWithZone(beginTime, endTime);
         for (ResultInfo resultInfo : recentResultWithZone) {
             System.out.println(resultInfo);
+        }
+    }
+
+    @Test
+    public void testAddResult() {
+        List<String> expected = new ArrayList<>();
+        expected.add("0");
+        expected.add("1");
+        List<String> actual = new ArrayList<>();
+        actual.add("0");
+        actual.add("2");
+        try {
+            resultService.addResult(new Timestamp(System.currentTimeMillis()), 2, "windows10", "Chinese",
+                    InetAddress.getLocalHost().getHostAddress(), "192.168.1.155", "BL696_0461",
+                    "failed");
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
         }
     }
 }
