@@ -479,18 +479,10 @@ COPY public.config (cid, "timestamp", id, os, lang, rule_id, data, type, param) 
 --
 
 COPY public.result (rid, "timestamp", id, os, lang, server_ip, host_ip, rule_id, expected, actual, status) FROM stdin;
-1	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696-0711	{1,AllSigned}	\N	failed
 2	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
-3	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696-0711	{1,AllSigned}	{1,AllSigned}	pass
-4	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0461	\N	{1}	failed
 5	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0461	\N	\N	pass
 6	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0086	{1}	\N	failed
-7	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696-0711	{1,AllSigned}	\N	failed
-8	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0086	{1}	\N	failed
-9	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
-10	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0086	{1}	\N	failed
-11	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_7921	{1,2}	\N	failed
-12	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0461	\N	{1}	failed
+1	2022-07-14 02:29:05.206+08	2	windows10	Chinese	172.23.192.1	192.168.199.185	BL696_0711	{1,AllSigned}	\N	failed
 \.
 
 
