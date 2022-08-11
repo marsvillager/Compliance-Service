@@ -10,5 +10,5 @@ public interface IGetResultService {
 
     List<ResultInfo> getResultById(Integer id);
 
-    Map<String, ResultInfo> GetResultMapById(Integer id);
+//    Map<String, ResultInfo> GetResultMapById(Integer id);
 }

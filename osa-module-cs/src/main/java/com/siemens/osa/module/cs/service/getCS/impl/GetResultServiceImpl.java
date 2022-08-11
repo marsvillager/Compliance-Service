@@ -29,8 +29,8 @@ public class GetResultServiceImpl implements IGetResultService {
         return resultService.GetResultById(id);
     }
 
-    @Override
-    public Map<String, ResultInfo> GetResultMapById(Integer id) {
-        return resultService.GetResultMapById(id);
-    }
+//    @Override
+//    public Map<String, ResultInfo> GetResultMapById(Integer id) {
+//        return resultService.GetResultMapById(id);
+//    }
 }

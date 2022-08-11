@@ -22,8 +22,8 @@ public class ResultService {
         return resultInfoRepository.getResultById(id);
     }
 
-    public Map<String, ResultInfo> GetResultMapById(Integer id) {
-        List<ResultInfo> resultInfoList = resultInfoRepository.getResultById(id);
-        return resultInfoList.stream().collect(Collectors.toMap(k -> k.getRuleId(), v -> v));
-    }
+//    public Map<String, ResultInfo> GetResultMapById(Integer id) {
+//        List<ResultInfo> resultInfoList = resultInfoRepository.getResultById(id);
+//        return resultInfoList.stream().collect(Collectors.toMap(k -> k.getRuleId(), v -> v));
+//    }
 }

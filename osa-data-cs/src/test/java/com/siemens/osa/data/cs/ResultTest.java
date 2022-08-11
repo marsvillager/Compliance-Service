@@ -34,15 +34,15 @@ public class ResultTest {
         }
     }
 
-    @Test
-    public void testGetResultMapById() {
-        int id = 2;
-        Map<String, ResultInfo> resultInfoMap = resultService.GetResultMapById(id);
-        ResultInfo resultInfo = resultInfoMap.get("BL696_0711");
-        System.out.println(resultInfo);
-        String[] expected = resultInfo.getExpected();
-        for (String s : expected) {
-            System.out.println(s);
-        }
-    }
+//    @Test
+//    public void testGetResultMapById() {
+//        int id = 2;
+//        Map<String, ResultInfo> resultInfoMap = resultService.GetResultMapById(id);
+//        ResultInfo resultInfo = resultInfoMap.get("BL696_0711");
+//        System.out.println(resultInfo);
+//        String[] expected = resultInfo.getExpected();
+//        for (String s : expected) {
+//            System.out.println(s);
+//        }
+//    }
 }
