@@ -15,4 +15,7 @@ public interface ConfigInfoRepository extends JpaRepository<ConfigInfo, Long> {
 
     @Query(value = "select * from config where id = :id", nativeQuery = true)
     List<ConfigInfo> getConfigById(@Param("id") Integer id);
+
+    @Query(value = "select * from config where id = :id and rule_id = :ruleId", nativeQuery = true)
+    List<ConfigInfo> getConfigListById(@Param("id") Integer id, @Param("rule_id") String ruleId);
 }

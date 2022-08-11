@@ -20,12 +20,12 @@ public class GetConfigServiceImpl implements IGetConfigService {
     }
 
     @Override
-    public List<ConfigInfo> getConfig() {
+    public List<ConfigInfo> GetConfig() {
         return configService.GetAllConfig();
     }
 
     @Override
-    public List<ConfigInfo> getConfigById(Integer id) {
+    public List<ConfigInfo> GetConfigById(Integer id) {
         return configService.GetConfigById(id);
     }
 

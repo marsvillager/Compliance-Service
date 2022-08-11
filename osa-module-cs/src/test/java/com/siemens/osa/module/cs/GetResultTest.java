@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class GetResultTest {
     @Test
     public void testGetAllResult() {
         GetResultServiceImpl getResultService = new GetResultServiceImpl(resultService);
-        List<ResultInfo> resultInfoList = getResultService.getResult();
+        List<ResultInfo> resultInfoList = getResultService.GetResult();
         for (ResultInfo resultInfo: resultInfoList) {
             System.out.println(resultInfo);
         }
@@ -31,7 +32,7 @@ public class GetResultTest {
     public void testGetResultById() {
         int id = 2;
         GetResultServiceImpl getResultService = new GetResultServiceImpl(resultService);
-        List<ResultInfo> resultInfoList = getResultService.getResultById(id);
+        List<ResultInfo> resultInfoList = getResultService.GetResultById(id);
         for (ResultInfo resultInfo: resultInfoList) {
             System.out.println(resultInfo);
         }
@@ -49,4 +50,26 @@ public class GetResultTest {
 //            System.out.println(s);
 //        }
 //    }
+
+    @Test
+    public void testGetRecentResult() {
+        GetResultServiceImpl getResultService = new GetResultServiceImpl(resultService);
+        List<ResultInfo> resultInfoList = getResultService.GetRecentResult();
+        for (ResultInfo resultInfo : resultInfoList) {
+            System.out.println(resultInfo);
+        }
+    }
+
+    @Test
+    public void testGetRecentResultWithZone(){
+        GetResultServiceImpl getResultService = new GetResultServiceImpl(resultService);
+        String beginTimeStr = "2022-08-11 00:00:00";
+        String endTimeStr = "2022-08-12 00:00:00";
+        Timestamp beginTime = Timestamp.valueOf(beginTimeStr);
+        Timestamp endTime = Timestamp.valueOf(endTimeStr);
+        List<ResultInfo> resultInfoList = getResultService.GetRecentResultWithZone(beginTime, endTime);
+        for (ResultInfo resultInfo : resultInfoList) {
+            System.out.println(resultInfo);
+        }
+    }
 }

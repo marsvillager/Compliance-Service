@@ -10,6 +10,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -25,25 +26,25 @@ public class ResultInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long rid;
 
-    @Column(name = "timestamp", nullable = false)
-    private String timestamp;
+    @Column(name = "timestamp")
+    private Timestamp timestamp;
 
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "os", nullable = false)
+    @Column(name = "os")
     private String os;
 
     @Column(name = "lang")
     private String lang;
 
-    @Column(name = "server_ip", nullable = false)
+    @Column(name = "server_ip")
     private String serverIP;
 
-    @Column(name = "host_ip", nullable = false)
+    @Column(name = "host_ip")
     private String hostIP;
 
-    @Column(name = "rule_id", nullable = false)
+    @Column(name = "rule_id")
     private String ruleId;
 
     @Column(name = "expected")
@@ -56,4 +57,92 @@ public class ResultInfo {
 
     @Column(name = "status")
     private String status;
+
+    public long getRid() {
+        return rid;
+    }
+
+    public void setRid(long rid) {
+        this.rid = rid;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getServerIP() {
+        return serverIP;
+    }
+
+    public void setServerIP(String serverIP) {
+        this.serverIP = serverIP;
+    }
+
+    public String getHostIP() {
+        return hostIP;
+    }
+
+    public void setHostIP(String hostIP) {
+        this.hostIP = hostIP;
+    }
+
+    public String getRuleId() {
+        return ruleId;
+    }
+
+    public void setRuleId(String ruleId) {
+        this.ruleId = ruleId;
+    }
+
+    public String[] getExpected() {
+        return expected;
+    }
+
+    public void setExpected(String[] expected) {
+        this.expected = expected;
+    }
+
+    public String[] getActual() {
+        return actual;
+    }
+
+    public void setActual(String[] actual) {
+        this.actual = actual;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

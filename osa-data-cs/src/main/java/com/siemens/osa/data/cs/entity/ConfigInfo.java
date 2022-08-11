@@ -10,6 +10,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -25,10 +26,10 @@ public class ConfigInfo {
         @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long cid;
 
-    @Column(name = "timestamp", nullable = false)
-    private String timestamp;
+    @Column(name = "timestamp")
+    private Timestamp timestamp;
 
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "os")
@@ -37,7 +38,7 @@ public class ConfigInfo {
     @Column(name = "lang")
     private String lang;
 
-    @Column(name = "rule_id", nullable = false)
+    @Column(name = "rule_id")
     private String ruleId;
 
     @Column(name = "data")
@@ -46,6 +47,78 @@ public class ConfigInfo {
 
     @Column(name = "type")
     private Integer type;
+
+    public long getCid() {
+        return cid;
+    }
+
+    public void setCid(long cid) {
+        this.cid = cid;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    public String getRuleId() {
+        return ruleId;
+    }
+
+    public void setRuleId(String ruleId) {
+        this.ruleId = ruleId;
+    }
+
+    public String[] getData() {
+        return data;
+    }
+
+    public void setData(String[] data) {
+        this.data = data;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String[] getParams() {
+        return params;
+    }
+
+    public void setParams(String[] params) {
+        this.params = params;
+    }
 
     @Column(name = "param")
     @Type(type = "string-array")

@@ -44,4 +44,13 @@ public class ConfigTest {
             System.out.println(datum);
         }
     }
+
+    @Test
+    public void testGetConfigListById() {
+        int id = 2;
+        List<String> configListById = configService.getConfigListById(id, "BL696_0711");
+        for (String res: configListById) {
+            System.out.println(res);
+        }
+    }
 }

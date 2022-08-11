@@ -5,6 +5,7 @@ import com.siemens.osa.data.cs.module.ResultService;
 import com.siemens.osa.module.cs.service.getCS.IGetResultService;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -20,12 +21,12 @@ public class GetResultServiceImpl implements IGetResultService {
     }
 
     @Override
-    public List<ResultInfo> getResult() {
+    public List<ResultInfo> GetResult() {
         return resultService.GetAllResult();
     }
 
     @Override
-    public List<ResultInfo> getResultById(Integer id) {
+    public List<ResultInfo> GetResultById(Integer id) {
         return resultService.GetResultById(id);
     }
 
@@ -33,4 +34,19 @@ public class GetResultServiceImpl implements IGetResultService {
 //    public Map<String, ResultInfo> GetResultMapById(Integer id) {
 //        return resultService.GetResultMapById(id);
 //    }
+
+    @Override
+    public List<ResultInfo> GetRecentResult() {
+        return resultService.GetRecentResult();
+    }
+
+    @Override
+    public List<ResultInfo> GetResultByHostIpTime(String hostIp, Timestamp collectTime) {
+        return resultService.GetResultByHostIpTime(hostIp, collectTime);
+    }
+
+    @Override
+    public List<ResultInfo> GetRecentResultWithZone(Timestamp beginTime, Timestamp endTime) {
+        return resultService.GetRecentResultWithZone(beginTime, endTime);
+    }
 }

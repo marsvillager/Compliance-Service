@@ -21,7 +21,7 @@ public class GetConfigTest {
     @Test
     public void testGetAllConfig() {
         GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configService);
-        List<ConfigInfo> configInfoList = getConfigService.getConfig();
+        List<ConfigInfo> configInfoList = getConfigService.GetConfig();
         for (ConfigInfo configInfo: configInfoList) {
             System.out.println(configInfo);
         }
@@ -31,7 +31,7 @@ public class GetConfigTest {
     public void testGetConfigById() {
         int id = 2;
         GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configService);
-        List<ConfigInfo> configInfoList = getConfigService.getConfigById(id);
+        List<ConfigInfo> configInfoList = getConfigService.GetConfigById(id);
         for (ConfigInfo configInfo: configInfoList) {
             System.out.println(configInfo);
         }
