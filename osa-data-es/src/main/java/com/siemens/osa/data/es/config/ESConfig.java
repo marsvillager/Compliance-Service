@@ -10,10 +10,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ESConfig {
 
+    /** host list. */
     @Value("${elasticsearch.hostlist}")
     private String hostList;
 
-    @Bean
+    /**
+     * get es client.
+     *
+     * @return {@link RestHighLevelClient}
+     */
+    @Bean("osa-data-esConfig")
     public RestHighLevelClient restHighLevelClient() {
         String[] split = hostList.split(",");
         HttpHost[] httpHostsArray = new HttpHost[split.length];
@@ -24,4 +30,5 @@ public class ESConfig {
 
         return new RestHighLevelClient(RestClient.builder(httpHostsArray));
     }
+
 }
