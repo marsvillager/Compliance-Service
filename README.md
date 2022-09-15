@@ -51,3 +51,8 @@ PostgreSQL\13\data\pg_hba.conf add:
 ## remote getES
 elasticsearch.yml add: 
 ```network.host: 0.0.0.0```
+
+## 注意
+sql文件（插入到数据库中的脚本文件）和本地的基线配置文件中的服务都是基于windows系统中的显示决定的，
+即根据显示名称而非服务名称，这是beat采用cmd命令的采集方法所导致的
+![img.png](img.png)
