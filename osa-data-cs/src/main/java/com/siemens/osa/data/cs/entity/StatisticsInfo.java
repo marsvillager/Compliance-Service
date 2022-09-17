@@ -19,65 +19,41 @@ import javax.persistence.GenerationType;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Entity(name = "Event")
 @Data
-@Table(name = "result")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "statistics")
 @TypeDef(name = "string-array", typeClass = StringArrayType.class)
 @TypeDef(name = "list-array", typeClass = ListArrayType.class)
 @TypeDef(name = "ipv4", typeClass = PostgreSQLInetType.class, defaultForType = Inet.class)
-@NoArgsConstructor
-@AllArgsConstructor
-public class ResultInfo {
+public class StatisticsInfo {
 
     /** database id. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long rid;
+    private long sid;
 
     /** machine check item collection time. */
-    @Column(name = "timestamp")
+    @Column(name = "check_time")
     private Timestamp timestamp;
 
     /** machine utc time zone. */
     @Column(name = "utc")
     private String utc;
 
-    /** config file id. */
-    @Column(name = "id")
-    private Integer id;
-
-    /** operating System. */
-    @Column(name = "os")
-    private String os;
-
-    /** language Version. */
-    @Column(name = "lang")
-    private String lang;
-
-    /** server ip. */
-    @Column(name = "server_ip", columnDefinition = "inet")
-    private Inet serverIP;
-
     /** collection machine ip. */
     @Column(name = "host_ip", columnDefinition = "inet")
-    private Inet hostIP;
+    private Inet hostIp;
 
-    /** rule id. */
-    @Column(name = "rule_id")
-    private String ruleId;
-
-    /** expected result value. */
-    @Column(name = "expected")
+    /** machine failure check item rule id list. */
     @Type(type = "list-array")
-    private List<String> expected;
+    @Column(name = "failed_list")
+    private List<String> failedList;
 
-    /** actual result value. */
-    @Column(name = "actual")
+    /** machine success check item rule id list. */
     @Type(type = "list-array")
-    private List<String> actual;
-
-    /** comparison result status. */
-    @Column(name = "status")
-    private String status;
+    @Column(name = "pass_list")
+    private List<String> passList;
 
 }

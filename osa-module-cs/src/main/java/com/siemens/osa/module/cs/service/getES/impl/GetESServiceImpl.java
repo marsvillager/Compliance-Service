@@ -1,24 +1,34 @@
-package com.siemens.osa.module.cs.service.getES.impl;
+package com.siemens.osa.module.cs.service.getes.impl;
 
-import com.siemens.osa.data.es.Service.GetData.impl.GetESInfoServiceImpl;
+import com.siemens.osa.data.es.service.getdata.impl.GetESInfoServiceImpl;
 import com.siemens.osa.data.es.entity.ESInfo;
-import com.siemens.osa.module.cs.service.getES.IGetESService;
+import com.siemens.osa.module.cs.service.getes.IGetESService;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class GetESServiceImpl implements IGetESService {
+
+    /** the es module of GetESInfoServiceImpl object. */
     private GetESInfoServiceImpl esInfoGetService;
 
-    public GetESServiceImpl() {
+    /**
+     * constructor.
+     *
+     * @param esInfoGetServices esInfoGetService
+     */
+    public GetESServiceImpl(final GetESInfoServiceImpl esInfoGetServices) {
+        this.esInfoGetService = esInfoGetServices;
     }
 
-    public GetESServiceImpl(GetESInfoServiceImpl esInfoGetService) {
-        this.esInfoGetService = esInfoGetService;
-    }
-
+    /**
+     * get all es result.
+     *
+     * @return {@link List}&lt;{@link ESInfo}&gt;
+     */
     @Override
     public List<ESInfo> getES() {
         try {
@@ -26,6 +36,7 @@ public class GetESServiceImpl implements IGetESService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return new LinkedList<>();
     }
+
 }

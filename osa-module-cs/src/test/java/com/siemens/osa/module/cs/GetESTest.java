@@ -1,8 +1,8 @@
 package com.siemens.osa.module.cs;
 
-import com.siemens.osa.data.es.Service.GetData.impl.GetESInfoServiceImpl;
+import com.siemens.osa.data.es.service.getdata.impl.GetESInfoServiceImpl;
 import com.siemens.osa.data.es.entity.ESInfo;
-import com.siemens.osa.module.cs.service.getES.impl.GetESServiceImpl;
+import com.siemens.osa.module.cs.service.getes.impl.GetESServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,9 +24,10 @@ public class GetESTest {
         for (ESInfo esInfo: esInfoList) {
             System.out.println(esInfo);
             List<String> result = esInfo.getResult();
+            String ruleId = esInfo.getRuleId();
             for (String s : result) {
+                System.out.println(ruleId);
                 System.out.println(s);
-                System.out.println(s.trim().equals("masked"));
             }
         }
     }

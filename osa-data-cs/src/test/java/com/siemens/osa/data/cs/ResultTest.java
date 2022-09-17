@@ -1,5 +1,6 @@
 package com.siemens.osa.data.cs;
 
+import com.siemens.osa.data.cs.config.Inet;
 import com.siemens.osa.data.cs.entity.ResultInfo;
 import com.siemens.osa.data.cs.module.ResultService;
 import org.junit.Test;
@@ -13,7 +14,6 @@ import java.net.UnknownHostException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -23,7 +23,7 @@ public class ResultTest {
 
     @Test
     public void testGetAllResult() {
-        List<ResultInfo> resultInfoList = resultService.GetAllResult();
+        List<ResultInfo> resultInfoList = resultService.getAllResult();
         for(ResultInfo resultInfo: resultInfoList) {
             System.out.println(resultInfo.toString());
         }
@@ -32,27 +32,15 @@ public class ResultTest {
     @Test
     public void testGetResultById() {
         int id = 2;
-        List<ResultInfo> resultInfoList = resultService.GetResultById(id);
+        List<ResultInfo> resultInfoList = resultService.getResultById(id);
         for (ResultInfo resultInfo : resultInfoList) {
             System.out.println(resultInfo);
         }
     }
 
-//    @Test
-//    public void testGetResultMapById() {
-//        int id = 2;
-//        Map<String, ResultInfo> resultInfoMap = resultService.GetResultMapById(id);
-//        ResultInfo resultInfo = resultInfoMap.get("BL696_0711");
-//        System.out.println(resultInfo);
-//        String[] expected = resultInfo.getExpected();
-//        for (String s : expected) {
-//            System.out.println(s);
-//        }
-//    }
-
     @Test
     public void testGetRecentResult(){
-        List<ResultInfo> recentResult = resultService.GetRecentResult();
+        List<ResultInfo> recentResult = resultService.getRecentResult();
         for (ResultInfo resultInfo : recentResult) {
             System.out.println(resultInfo);
         }
@@ -60,11 +48,11 @@ public class ResultTest {
 
     @Test
     public void testGetRecentResultWithZone(){
-        String beginTimeStr = "2022-08-11 00:00:00";
-        String endTimeStr = "2022-08-12 00:00:00";
+        String beginTimeStr = "2022-07-11 23:33:00";
+        String endTimeStr = "2022-07-11 23:34:00";
         Timestamp beginTime = Timestamp.valueOf(beginTimeStr);
         Timestamp endTime = Timestamp.valueOf(endTimeStr);
-        List<ResultInfo> recentResultWithZone = resultService.GetRecentResultWithZone(beginTime, endTime);
+        List<ResultInfo> recentResultWithZone = resultService.getRecentResultWithZone(beginTime, endTime);
         for (ResultInfo resultInfo : recentResultWithZone) {
             System.out.println(resultInfo);
         }
@@ -79,9 +67,10 @@ public class ResultTest {
         actual.add("0");
         actual.add("2");
         try {
-            resultService.addResult(new Timestamp(System.currentTimeMillis()), 2, "windows10", "Chinese",
-                    InetAddress.getLocalHost().getHostAddress(), "192.168.1.155", "BL696_0461",
-                    "failed");
+            ResultInfo resultInfo = new ResultInfo(1, new Timestamp(System.currentTimeMillis()), "+2",2, "windows10", "Chinese",
+                    new Inet(InetAddress.getLocalHost().getHostAddress()), new Inet("192.168.1.155"), "BL696_0461",
+                    actual,expected,"failed");
+            resultService.addResult(resultInfo);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

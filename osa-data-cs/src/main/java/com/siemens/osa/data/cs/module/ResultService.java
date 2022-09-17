@@ -2,7 +2,6 @@ package com.siemens.osa.data.cs.module;
 
 import com.siemens.osa.data.cs.entity.ResultInfo;
 import com.siemens.osa.data.cs.repository.ResultInfoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -10,31 +9,99 @@ import java.util.List;
 
 @Service
 public class ResultService {
-    @Autowired
+
+    /** resultInfo repository. */
     private ResultInfoRepository resultInfoRepository;
 
-    public List<ResultInfo> GetAllResult() {
-        return resultInfoRepository.getAllResult();
+    /**
+     * constructor.
+     *
+     * @param repository
+     *            repository
+     */
+    public ResultService(final ResultInfoRepository repository) {
+        this.resultInfoRepository = repository;
     }
 
-    public List<ResultInfo> GetResultById(Integer id) {
-        return resultInfoRepository.getResultById(id);
+    /**
+     * get all results.
+     *
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    public List<ResultInfo> getAllResult() {
+        return resultInfoRepository.findAll();
     }
 
-    public List<ResultInfo> GetRecentResult() {
+    /**
+     * get result by config id.
+     *
+     * @param id
+     *            id
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    public List<ResultInfo> getResultById(Integer id) {
+        return resultInfoRepository.findById(id);
+    }
+
+    /**
+     * get most recent results.
+     *
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    public List<ResultInfo> getRecentResult() {
         return resultInfoRepository.getRecentResult();
     }
 
-    public List<ResultInfo> GetResultByHostIpTime(String hostIp, Timestamp collectTime) {
-        return resultInfoRepository.getResultByHostIpTime(hostIp, collectTime);
+    /**
+     * get the result by host ip and collectTime.
+     *
+     * @param hostIp
+     *            host ip
+     * @param collectTime
+     *            collectionTime
+     * @param ruleId
+     *            rule id
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    public List<ResultInfo> getResultByHostIpTime(String hostIp, Timestamp collectTime, String ruleId) {
+        return resultInfoRepository.getResultByHostIpTimeAndRuleId(hostIp, collectTime, ruleId);
     }
 
-    public List<ResultInfo> GetRecentResultWithZone(Timestamp beginTime, Timestamp endTime) {
+    /**
+     * get the latest results within a region time.
+     *
+     * @param beginTime
+     *            begin time
+     * @param endTime
+     *            end time
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    public List<ResultInfo> getRecentResultWithZone(Timestamp beginTime, Timestamp endTime) {
         return resultInfoRepository.getRecentResultWithZone(beginTime, endTime);
     }
 
-    public void addResult(Timestamp timestamp, Integer id, String os, String lang, String serverIp, String hostIp,
-                          String ruleId, String status) {
-        resultInfoRepository.addResult(timestamp, id, os, lang, serverIp, hostIp, ruleId, status);
+    /**
+     * insert a result.
+     *
+     * @param result
+     *            a resultInfo object
+     */
+    public void addResult(ResultInfo result) {
+        ResultInfo resultInfo = new ResultInfo();
+
+        resultInfo.setTimestamp(result.getTimestamp());
+        resultInfo.setUtc(result.getUtc());
+        resultInfo.setId(result.getId());
+        resultInfo.setOs(result.getOs());
+        resultInfo.setLang(result.getLang());
+        resultInfo.setHostIP(result.getHostIP());
+        resultInfo.setServerIP(result.getServerIP());
+        resultInfo.setRuleId(result.getRuleId());
+        resultInfo.setActual(result.getActual());
+        resultInfo.setExpected(result.getExpected());
+        resultInfo.setStatus(result.getStatus());
+
+        resultInfoRepository.save(resultInfo);
     }
+
 }

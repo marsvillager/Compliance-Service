@@ -1,126 +1,66 @@
 package com.siemens.osa.data.cs.entity;
 
-import com.vladmihalcea.hibernate.type.array.IntArrayType;
-import com.vladmihalcea.hibernate.type.array.StringArrayType;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import com.vladmihalcea.hibernate.type.json.JsonStringType;
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.GenerationType;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "config")
-@TypeDefs({
-        @TypeDef(name = "string-array", typeClass = StringArrayType.class),
-        @TypeDef(name = "int-array", typeClass = IntArrayType.class),
-        @TypeDef(name = "json", typeClass = JsonStringType.class),
-        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-})
+@TypeDef(name = "list-array", typeClass = ListArrayType.class)
+@AllArgsConstructor
+@NoArgsConstructor
 public class ConfigInfo {
+
+    /** database Id. */
     @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long cid;
 
+    /** configurationFileStorageTime. */
     @Column(name = "timestamp")
     private Timestamp timestamp;
 
+    /** config file id. */
     @Column(name = "id")
     private Integer id;
 
+    /** operating system. */
     @Column(name = "os")
     private String os;
 
+    /** language Version.*/
     @Column(name = "lang")
     private String lang;
 
+    /** rule id. */
     @Column(name = "rule_id")
     private String ruleId;
 
-    @Column(name = "data")
-    @Type(type = "string-array")
-    private String[] data;
+    /** rules expect data. */
+    @Column(name = "data", columnDefinition = "text[]")
+    @Type(type = "list-array")
+    private List<String> data;
 
+    /** resultType. */
     @Column(name = "type")
     private Integer type;
 
-    public long getCid() {
-        return cid;
-    }
+    /** run command arguments. */
+    @Column(name = "param", columnDefinition = "text[]")
+    @Type(type = "list-array")
+    private List<String> params;
 
-    public void setCid(long cid) {
-        this.cid = cid;
-    }
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getOs() {
-        return os;
-    }
-
-    public void setOs(String os) {
-        this.os = os;
-    }
-
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
-    public String getRuleId() {
-        return ruleId;
-    }
-
-    public void setRuleId(String ruleId) {
-        this.ruleId = ruleId;
-    }
-
-    public String[] getData() {
-        return data;
-    }
-
-    public void setData(String[] data) {
-        this.data = data;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public String[] getParams() {
-        return params;
-    }
-
-    public void setParams(String[] params) {
-        this.params = params;
-    }
-
-    @Column(name = "param")
-    @Type(type = "string-array")
-    private String[] params;
 }

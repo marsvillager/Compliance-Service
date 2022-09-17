@@ -1,22 +1,20 @@
 package com.siemens.osa.module.cs;
 
-import com.siemens.osa.data.cs.entity.ResultInfo;
-import com.siemens.osa.data.cs.module.ResultService;
-import com.siemens.osa.module.cs.entity.hostResult;
-import com.siemens.osa.module.cs.entity.resultReport;
-import com.siemens.osa.module.cs.service.generateReport.impl.GenerateReportServiceImpl;
-import com.siemens.osa.module.cs.service.getCS.impl.GetResultServiceImpl;
+import com.siemens.osa.data.cs.entity.StatisticsInfo;
+import com.siemens.osa.module.cs.service.generatereport.impl.GenerateReportServiceImpl;
+import com.siemens.osa.module.cs.util.IpUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.net.UnknownHostException;
 import java.util.List;
 
 @SpringBootTest
 public class GenerateReportTest {
     @Autowired
-    private ResultService resultService;
+    private GenerateReportServiceImpl generateReportServiceImpl;
 
     @Value("${circle.beginTime}")
     String beginTime;
@@ -30,28 +28,63 @@ public class GenerateReportTest {
     @Value("${circle.multiple}")
     Integer multiple;
 
-    @Test
-    public void testGenerateInstantReport(){
-        GetResultServiceImpl getResultService = new GetResultServiceImpl(resultService);
-        GenerateReportServiceImpl generateReportService = new GenerateReportServiceImpl(resultService);
+    @Value("${ip.list}")
+    String ipStrings;
 
-        resultReport resultReport = generateReportService.generateInstantReport();
-        System.out.println(resultReport);
-        List<hostResult> failedHost = resultReport.getFailedHost();
-        for (hostResult hostResult : failedHost) {
-            List<ResultInfo> resultByHostIpTime = getResultService.GetResultByHostIpTime(hostResult.getHostIp(), resultReport.getCollectTime());
-            for (ResultInfo resultInfo : resultByHostIpTime) {
-                System.out.println(resultInfo);
+    @Value("${circle.utc}")
+    String utc;
+
+    @Test
+    public void testIp() throws UnknownHostException {
+        System.out.println(ipStrings);
+//        List<String> strings = IpUtil.IpSeparate(ipList);
+        List<String> strings = IpUtil.ipStrToIpList(ipStrings);
+        for (String string : strings) {
+            System.out.println(string);
+        }
+    }
+
+    @Test
+    public void testGetInstantStatisticsByIp() throws UnknownHostException {
+        List<String> ipList = IpUtil.ipStrToIpList(ipStrings);
+        List<StatisticsInfo> statisticsInfos = generateReportServiceImpl.generateInstantReportWithIpList(ipList);
+        for (StatisticsInfo statisticsInfo : statisticsInfos) {
+            System.out.println(statisticsInfo.getHostIp().getAddress());
+            System.out.println(statisticsInfo);
+        }
+    }
+
+    @Test
+    public void testGenerateDefaultInstantStatistics(){
+        List<StatisticsInfo> statisticsInfos = generateReportServiceImpl.generateDefaultInstantReport();
+        for (StatisticsInfo statisticsInfo : statisticsInfos) {
+            System.out.println(statisticsInfo.getHostIp().getAddress());
+            System.out.println(statisticsInfo);
+        }
+    }
+
+    @Test
+    public void testGenerateCircleStatistics() throws UnknownHostException {
+        List<String> ipList = IpUtil.ipStrToIpList(ipStrings);
+        List<List<StatisticsInfo>> reportWithIpList = generateReportServiceImpl.generateCircleReportWithIpList(ipList, beginTime, endTime, utc,zone, multiple);
+        for (List<StatisticsInfo> statisticsInfos : reportWithIpList) {
+            System.out.println("--------------------------------------------");
+            for (StatisticsInfo statisticsInfo : statisticsInfos) {
+                System.out.println(statisticsInfo.getHostIp().getAddress());
+                System.out.println(statisticsInfo);
             }
         }
     }
 
     @Test
-    public void testGenerateCircleReport(){
-        GenerateReportServiceImpl generateReportService = new GenerateReportServiceImpl(resultService);
-        List<resultReport> resultReportList = generateReportService.generateCircleReport(beginTime, endTime, zone, multiple);
-        for (resultReport resultReport : resultReportList) {
-            System.out.println(resultReport);
+    public void testGenerateDefaultCircleStatistics() throws UnknownHostException {
+        List<List<StatisticsInfo>> reportWithIpList = generateReportServiceImpl.generateDefaultCircleReport(beginTime, endTime, utc,zone, multiple);
+        for (List<StatisticsInfo> statisticsInfos : reportWithIpList) {
+            System.out.println("--------------------------------------------");
+            for (StatisticsInfo statisticsInfo : statisticsInfos) {
+                System.out.println(statisticsInfo.getHostIp().getAddress());
+                System.out.println(statisticsInfo);
+            }
         }
     }
 }

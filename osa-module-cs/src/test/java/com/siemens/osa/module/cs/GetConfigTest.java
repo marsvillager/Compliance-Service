@@ -2,7 +2,7 @@ package com.siemens.osa.module.cs;
 
 import com.siemens.osa.data.cs.entity.ConfigInfo;
 import com.siemens.osa.data.cs.module.ConfigService;
-import com.siemens.osa.module.cs.service.getCS.impl.GetConfigServiceImpl;
+import com.siemens.osa.module.cs.service.getcs.impl.GetConfigServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class GetConfigTest {
     @Test
     public void testGetAllConfig() {
         GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configService);
-        List<ConfigInfo> configInfoList = getConfigService.GetConfig();
+        List<ConfigInfo> configInfoList = getConfigService.getConfig();
         for (ConfigInfo configInfo: configInfoList) {
             System.out.println(configInfo);
         }
@@ -31,7 +31,7 @@ public class GetConfigTest {
     public void testGetConfigById() {
         int id = 2;
         GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configService);
-        List<ConfigInfo> configInfoList = getConfigService.GetConfigById(id);
+        List<ConfigInfo> configInfoList = getConfigService.getConfigById(id);
         for (ConfigInfo configInfo: configInfoList) {
             System.out.println(configInfo);
         }
@@ -41,9 +41,9 @@ public class GetConfigTest {
     public void testGetConfigMapById() {
         int id = 2;
         GetConfigServiceImpl getConfigService = new GetConfigServiceImpl(configService);
-        Map<String, ConfigInfo> configInfoMap = getConfigService.GetConfigMapById(id);
+        Map<String, ConfigInfo> configInfoMap = getConfigService.getConfigMapById(id);
         ConfigInfo configInfo = configInfoMap.get("BL696_0711");
-        String[] data = configInfo.getData();
+        List<String> data = configInfo.getData();
         for (String datum : data) {
             System.out.println(datum);
         }

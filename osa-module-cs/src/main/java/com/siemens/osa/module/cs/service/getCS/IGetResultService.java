@@ -1,21 +1,58 @@
-package com.siemens.osa.module.cs.service.getCS;
+package com.siemens.osa.module.cs.service.getcs;
 
 import com.siemens.osa.data.cs.entity.ResultInfo;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 
 public interface IGetResultService {
-    List<ResultInfo> GetResult();
 
-    List<ResultInfo> GetResultById(Integer id);
+    /**
+     * get all result.
+     *
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    List<ResultInfo> getResult();
 
-//    Map<String, ResultInfo> GetResultMapById(Integer id);
+    /**
+     * get all results by config id.
+     *
+     * @param id id
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    List<ResultInfo> getResultById(Integer id);
 
-    List<ResultInfo> GetRecentResult();
+    /**
+     * get recent results.
+     *
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    List<ResultInfo> getRecentResult();
 
-    List<ResultInfo> GetResultByHostIpTime(String hostIp, Timestamp collectTime);
+    /**
+     * get result by host ip and collect time.
+     *
+     * @param hostIp      host ip
+     * @param collectTime collect time
+     * @param ruleId      rule id
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    List<ResultInfo> getResultByHostIpTime(String hostIp, Timestamp collectTime, String ruleId);
 
-    List<ResultInfo> GetRecentResultWithZone(Timestamp beginTime, Timestamp endTime);
+    /**
+     * get recent result within a time region.
+     *
+     * @param beginTime begin time
+     * @param endTime   end time
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    List<ResultInfo> getRecentResultWithZone(Timestamp beginTime, Timestamp endTime);
+
+    /**
+     * insert a result data.
+     *
+     * @param resultInfo ResultInfo object
+     */
+    void insertResult(ResultInfo resultInfo);
+
 }

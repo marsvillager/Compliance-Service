@@ -11,27 +11,52 @@ import java.util.List;
 
 @Repository
 public interface ResultInfoRepository extends JpaRepository<ResultInfo, Long> {
-    @Query(value = "select * from result", nativeQuery = true)
-    List<ResultInfo> getAllResult();
 
-    @Query(value = "select * from result where id = :id", nativeQuery = true)
-    List<ResultInfo> getResultById(@Param("id") Integer id);
+    /**
+     * get result by config id.
+     *
+     * @param id
+     *            id
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    List<ResultInfo> findById(Integer id);
 
+    /**
+     * get recent result.
+     *
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
     @Query(value = "select * from result where timestamp = (select max(timestamp) from result)", nativeQuery = true)
     List<ResultInfo> getRecentResult();
 
-    @Query(value = "select * from result where host_ip = inet(:hostIp) and timestamp = :collectTime",
-            nativeQuery = true)
-    List<ResultInfo> getResultByHostIpTime(@Param("hostIp") String hostIp, @Param("collectTime") Timestamp collectTime);
+    /**
+     * get the result by host ip.
+     *
+     * @param hostIp
+     *            host ip
+     * @param collectTime
+     *            collectionTime
+     * @param ruleId
+     *            rule id
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    @Query(value = "select * from result where host_ip = inet(:hostIp) "
+            + "and rule_id = :ruleId and timestamp = :collectTime", nativeQuery = true)
+    List<ResultInfo> getResultByHostIpTimeAndRuleId(@Param("hostIp") String hostIp,
+            @Param("collectTime") Timestamp collectTime, @Param("ruleId") String ruleId);
 
-    @Query(value = "select * from result where timestamp = (select max(timestamp) from result where " +
-            "timestamp >= :beginTime and timestamp < :endTime)", nativeQuery = true)
+    /**
+     * get recent result within time region.
+     *
+     * @param beginTime
+     *            begin time
+     * @param endTime
+     *            end time
+     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     */
+    @Query(value = "select * from result where timestamp = (select max(timestamp) from result where "
+            + "timestamp >= :beginTime and timestamp < :endTime)", nativeQuery = true)
     List<ResultInfo> getRecentResultWithZone(@Param("beginTime") Timestamp beginTime,
-                                             @Param("endTime") Timestamp endTime);
+            @Param("endTime") Timestamp endTime);
 
-    @Query(value = "insert into result(timestamp, id, os, lang, server_ip, host_ip, rule_id, status) values(" +
-            ":timestamp, :id, :os, :lang, inet(:serverIp), inet(:hostIp), :ruleId, :status)", nativeQuery = true)
-    void addResult(@Param("timestamp") Timestamp timestamp, @Param("id") Integer id, @Param("os") String os,
-                   @Param("lang") String lang, @Param("serverIp") String serverIp, @Param("hostIp") String hostIp,
-                   @Param("ruleId") String ruleId, @Param("status") String status);
 }

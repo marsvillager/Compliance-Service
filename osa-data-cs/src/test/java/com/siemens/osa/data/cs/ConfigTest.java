@@ -19,16 +19,22 @@ public class ConfigTest {
 
     @Test
     public void testGetAllConfig() {
-        List<ConfigInfo> configInfoList = configService.GetAllConfig();
+        List<ConfigInfo> configInfoList = configService.getAllConfig();
         for (ConfigInfo configInfo: configInfoList) {
+            System.out.println("############config item############");
             System.out.println(configInfo);
+            System.out.println("$$$$$$$$$$$$$$ param $$$$$$$$$$$$$$$$");
+            List<String> params = configInfo.getParams();
+            for (String param : params) {
+                System.out.println(param);
+            }
         }
     }
 
     @Test
     public void testGetConfigById() {
         int id = 2;
-        List<ConfigInfo> configInfoList = configService.GetConfigById(id);
+        List<ConfigInfo> configInfoList = configService.getConfigById(id);
         for (ConfigInfo configInfo : configInfoList) {
             System.out.println(configInfo);
         }
@@ -37,9 +43,10 @@ public class ConfigTest {
     @Test
     public void testGetConfigMapById() {
         int id = 2;
-        Map<String, ConfigInfo> configInfoMap = configService.GetConfigMapById(id);
-        ConfigInfo configInfo = configInfoMap.get("BL696_0711");
-        String[] data = configInfo.getData();
+        Map<String, ConfigInfo> configInfoMap = configService.getConfigMapById(id);
+        ConfigInfo configInfo = configInfoMap.get("BL999_6629");
+        List<String> data = configInfo.getData();
+        System.out.println(data);
         for (String datum : data) {
             System.out.println(datum);
         }
@@ -48,7 +55,7 @@ public class ConfigTest {
     @Test
     public void testGetConfigListById() {
         int id = 2;
-        List<String> configListById = configService.getConfigListById(id, "BL696_0711");
+        List<String> configListById = configService.getConfigDataListByIdAndRuleId(id, "BL999_7387");
         for (String res: configListById) {
             System.out.println(res);
         }
