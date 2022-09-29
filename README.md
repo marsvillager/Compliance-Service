@@ -46,7 +46,7 @@ eg.TRUNCATE config RESTART IDENTITY;
 
 ## remote getCS
 PostgreSQL\13\data\pg_hba.conf add: 
-```host all all IP Address/24 sram-sha-256```
+```host all all IP Address/24 scram-sha-256```
 
 ## remote getES
 elasticsearch.yml add: 
