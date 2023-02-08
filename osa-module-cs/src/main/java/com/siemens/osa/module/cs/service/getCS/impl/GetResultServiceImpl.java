@@ -17,7 +17,8 @@ public class GetResultServiceImpl implements IGetResultService {
     /**
      * constructor.
      *
-     * @param resultServices resultService object
+     * @param resultServices
+     *            resultService object
      */
     public GetResultServiceImpl(final ResultService resultServices) {
         this.resultService = resultServices;
@@ -36,7 +37,8 @@ public class GetResultServiceImpl implements IGetResultService {
     /**
      * get all results by config id.
      *
-     * @param id id
+     * @param id
+     *            id
      * @return {@link List}&lt;{@link ResultInfo}&gt;
      */
     @Override
@@ -57,8 +59,10 @@ public class GetResultServiceImpl implements IGetResultService {
     /**
      * get recent result by host ip.
      *
-     * @param hostIp      主机ip
-     * @param collectTime 收集时间
+     * @param hostIp
+     *            主机ip
+     * @param collectTime
+     *            收集时间
      * @return {@link List}&lt;{@link ResultInfo}&gt;
      */
     @Override
@@ -69,8 +73,10 @@ public class GetResultServiceImpl implements IGetResultService {
     /**
      * get recent result within a time region.
      *
-     * @param beginTime begin time
-     * @param endTime   end time
+     * @param beginTime
+     *            begin time
+     * @param endTime
+     *            end time
      * @return {@link List}&lt;{@link ResultInfo}&gt;
      */
     @Override
@@ -81,7 +87,8 @@ public class GetResultServiceImpl implements IGetResultService {
     /**
      * insert a result data.
      *
-     * @param resultInfo resultInfo
+     * @param resultInfo
+     *            resultInfo
      */
     @Override
     public void insertResult(ResultInfo resultInfo) {

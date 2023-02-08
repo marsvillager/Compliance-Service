@@ -93,7 +93,6 @@ public class ResultService {
         resultInfo.setUtc(result.getUtc());
         resultInfo.setId(result.getId());
         resultInfo.setOs(result.getOs());
-        resultInfo.setLang(result.getLang());
         resultInfo.setHostIP(result.getHostIP());
         resultInfo.setServerIP(result.getServerIP());
         resultInfo.setRuleId(result.getRuleId());

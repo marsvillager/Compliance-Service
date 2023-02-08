@@ -2,14 +2,29 @@ package com.siemens.osa.module.cs.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Set;
 
 public final class IpUtil {
+
+    /**
+     * four.
+     */
+    private static final Integer FOUR = 4;
+
+    /**
+     * eight.
+     */
+    private static final Integer EIGHT = 8;
+
+    /**
+     * 0xff.
+     */
+    private static final Integer OXFF = 0xFF;
 
     private IpUtil() {
     }
@@ -25,32 +40,48 @@ public final class IpUtil {
      */
     public static List<String> ipStrToIpList(String ipStr) throws UnknownHostException {
         List<String> ipList = new LinkedList<>();
-        Map<String, Integer> ipMap = new HashMap<>();
+        HashSet<String> ipSet = new HashSet<>();
 
         List<String> ips = ipSeparate(ipStr);
         for (String ip : ips) {
             if (isIp(ip)) { // Check if it is an ip address
-                if (!ipMap.containsKey(ip)) {
-                    ipMap.put(ip, 1);
+                if (!ipSet.contains(ip)) {
+                    ipSet.add(ip);
                     ipList.add(ip);
                 }
             } else if (ip.lastIndexOf("/") != -1) { //// Determine whether it is in the format of 192.168.1.1/24
-                String[] iph = ip.split("/");
-                if (isIp(iph[0])) {
-                    Integer mask = Integer.parseInt(iph[1]);
-                    if (mask <= 32 && mask >= 1) {
-                        List<String> allIps = maskToIps(iph[0], mask);
-                        for (String allIp : allIps) {
-                            if (!ipMap.containsKey(allIp)) {
-                                ipMap.put(allIp, 1);
-                                ipList.add(allIp);
-                            }
-                        }
+                generateIpBlock(ip, ipList, ipSet);
+            }
+        }
+        return ipList;
+    }
+
+    /**
+     * generate ip block.
+     *
+     * @param ip
+     *            ip string
+     * @param ipList
+     *            ip list
+     * @param ipSet
+     *            ip set
+     * @throws UnknownHostException
+     *             UnknownHostException
+     */
+    public static void generateIpBlock(String ip, List<String> ipList, Set<String> ipSet) throws UnknownHostException {
+        String[] iph = ip.split("/");
+        if (isIp(iph[0])) {
+            Integer mask = Integer.parseInt(iph[1]);
+            if (mask <= FOUR * EIGHT && mask >= 1) {
+                List<String> allIps = maskToIps(iph[0], mask);
+                for (String allIp : allIps) {
+                    if (!ipSet.contains(allIp)) {
+                        ipSet.add(allIp);
+                        ipList.add(allIp);
                     }
                 }
             }
         }
-        return ipList;
     }
 
     /**
@@ -83,7 +114,7 @@ public final class IpUtil {
 
         InetAddress inetAddress = InetAddress.getByName(ip);
         int address = inetAddress.hashCode();
-        Integer n = 32 - m;
+        Integer n = FOUR * EIGHT - m;
         int startIp = (address & ((0xFFFFFFFF) << n)); // minimum ip address
         int endIp = (address | ((0xFFFFFFFF) >>> m)); // max ip address
 
@@ -108,12 +139,12 @@ public final class IpUtil {
      */
     public static byte[] getAddress(int intIp) { // Convert integer ip address to byte array
         int address = intIp;
-        byte[] addr = new byte[4];
+        byte[] addr = new byte[FOUR];
 
-        addr[0] = (byte) ((address >>> 24) & 0xFF);
-        addr[1] = (byte) ((address >>> 16) & 0xFF);
-        addr[2] = (byte) ((address >>> 8) & 0xFF);
-        addr[3] = (byte) (address & 0xFF);
+        addr[0] = (byte) ((address >>> EIGHT * (FOUR - 1)) & OXFF);
+        addr[1] = (byte) ((address >>> EIGHT * 2) & OXFF);
+        addr[2] = (byte) ((address >>> EIGHT) & OXFF);
+        addr[FOUR - 1] = (byte) (address & OXFF);
         return addr;
     }
 
@@ -130,16 +161,28 @@ public final class IpUtil {
             return false;
         }
         // Determine whether the length of the string is between 7-15 digits (x.x.x.x-----xxx.xxx.xxx.xxx)
-        if (s.length() < 7 || s.length() > 15) {
+        if (s.length() < EIGHT - 1 || s.length() > (EIGHT * 2 - 1)) {
             return false;
         }
         // Whether the first and last characters are . (.x.x.x or x.x.x.x.)
         if (s.charAt(0) == '.' || s.charAt(s.length() - 1) == '.') {
             return false;
         }
+
+        return ipStrOK(s);
+    }
+
+    /**
+     * ip str.
+     *
+     * @param s
+     *            ip string
+     * @return boolean
+     */
+    public static boolean ipStrOK(String s) {
         // Divide the string into a string array by " . ", and then judge whether the length of the string array is 4
         String[] ss = s.split("\\.");
-        if (ss.length != 4) {
+        if (ss.length != FOUR) {
             return false;
         }
         // Determine whether each character of each element is a numeric character
@@ -152,7 +195,7 @@ public final class IpUtil {
 
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < FOUR; i++) {
             int temp = Integer.parseInt(ss[i]);
             // Determine whether the first element of the character array is 0 (the first element of 0 cannot be
             // established (0.xx.xx.xx))
@@ -160,7 +203,7 @@ public final class IpUtil {
                 return false;
             }
             // Determine whether each element is between 0-255
-            if (temp < 0 || temp > 255) {
+            if (temp < 0 || temp > OXFF) {
                 return false;
             }
         }

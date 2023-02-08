@@ -67,7 +67,7 @@ public class ResultTest {
         actual.add("0");
         actual.add("2");
         try {
-            ResultInfo resultInfo = new ResultInfo(1, new Timestamp(System.currentTimeMillis()), "+2",2, "windows10", "Chinese",
+            ResultInfo resultInfo=new ResultInfo(1,new Timestamp(System.currentTimeMillis()), "+2",2, "windows10",
                     new Inet(InetAddress.getLocalHost().getHostAddress()), new Inet("192.168.1.155"), "BL696_0461",
                     actual,expected,"failed");
             resultService.addResult(resultInfo);

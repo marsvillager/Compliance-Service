@@ -41,10 +41,6 @@ public class ConfigInfo {
     @Column(name = "os")
     private String os;
 
-    /** language Version.*/
-    @Column(name = "lang")
-    private String lang;
-
     /** rule id. */
     @Column(name = "rule_id")
     private String ruleId;
@@ -59,8 +55,13 @@ public class ConfigInfo {
     private Integer type;
 
     /** run command arguments. */
-    @Column(name = "param", columnDefinition = "text[]")
+    @Column(name = "paramen", columnDefinition = "text[]")
     @Type(type = "list-array")
-    private List<String> params;
+    private List<String> paramEn;
+
+    /** run command arguments. */
+    @Column(name = "paramzh", columnDefinition = "text[]")
+    @Type(type = "list-array")
+    private List<String> paramZh;
 
 }

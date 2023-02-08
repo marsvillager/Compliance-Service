@@ -54,9 +54,10 @@ public class CompareDataTest {
     @Test
     public void check(){
         List<StatisticsInfo> allStatistics = getStatisticsServiceImpl.getAllStatistics();
-        List<String> failedList = allStatistics.get(0).getFailedList();
-        Inet hostIp = allStatistics.get(0).getHostIp();
-        Timestamp timestamp = allStatistics.get(0).getTimestamp();
+//        List<String> failedList = allStatistics.get(0).getPassList();
+        List<String> failedList = allStatistics.get(2).getFailedList();
+        Inet hostIp = allStatistics.get(2).getHostIp();
+        Timestamp timestamp = allStatistics.get(2).getTimestamp();
         System.out.println(failedList.size());
         for (String ruleID : failedList) {
             List<ResultInfo> resultByHostIpTime = getResultServiceImpl.getResultByHostIpTime(hostIp.getAddress(), timestamp, ruleID);

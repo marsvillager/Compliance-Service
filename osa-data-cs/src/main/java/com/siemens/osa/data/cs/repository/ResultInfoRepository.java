@@ -38,7 +38,7 @@ public interface ResultInfoRepository extends JpaRepository<ResultInfo, Long> {
      *            collectionTime
      * @param ruleId
      *            rule id
-     * @return {@link List}&lt;{@link ResultInfo}&gt;
+     * @return {@link List}<{@link ResultInfo}>
      */
     @Query(value = "select * from result where host_ip = inet(:hostIp) "
             + "and rule_id = :ruleId and timestamp = :collectTime", nativeQuery = true)

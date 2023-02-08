@@ -23,11 +23,15 @@ public class ConfigTest {
         for (ConfigInfo configInfo: configInfoList) {
             System.out.println("############config item############");
             System.out.println(configInfo);
-            System.out.println("$$$$$$$$$$$$$$ param $$$$$$$$$$$$$$$$");
-            List<String> params = configInfo.getParams();
-            for (String param : params) {
-                System.out.println(param);
+            System.out.println("$$$$$$$$$$$$$$ data $$$$$$$$$$$$$$$$");
+            List<String> data = configInfo.getData();
+            for (String datum : data) {
+                System.out.println(datum);
             }
+            System.out.println("$$$$$$$$$$$$$$ param $$$$$$$$$$$$$$$$");
+            List<String> params = configInfo.getParamEn();
+            System.out.println(params);
+            System.out.println(configInfo.getParamZh());
         }
     }
 

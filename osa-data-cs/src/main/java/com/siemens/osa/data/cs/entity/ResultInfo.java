@@ -50,10 +50,6 @@ public class ResultInfo {
     @Column(name = "os")
     private String os;
 
-    /** language Version. */
-    @Column(name = "lang")
-    private String lang;
-
     /** server ip. */
     @Column(name = "server_ip", columnDefinition = "inet")
     private Inet serverIP;
